@@ -17,6 +17,10 @@ if ! [[ -d '$project_folder_name' ]]; then
   else
       echo "Python y Pip estan instalados"
   fi
+  
+  # crea los archivos necesarios
+  mkdir -p templates static static/css static/images static/js
+  touch app.py
 
   # Entra al virtual-env
   python3 -m venv .venv
@@ -26,10 +30,6 @@ if ! [[ -d '$project_folder_name' ]]; then
   pip3 install Flask
   pipenv install flask
   pipenv shell
-  
-  # crea los archivos necesarios
-  mkdir -p templates static static/css static/images static/js
-  touch app.py
 else
   echo "Error el proyecto ya existe"
 fi
