@@ -1,14 +1,13 @@
 #!/bin/bash
 
 # Asigna la variable
-project_folder_name=$1
+nuevo_proyecto=$1
 
-# Se fija si existe el proyecto
-if ! [[ -d '$project_folder_name' ]]; then
+if ! [[ -d '$nuevo_proyecto' ]]; then
   # Crea el proyecto
   echo "Creando nuevo proyecto"
-  mkdir $project_folder_name
-  cd $project_folder_name
+  mkdir $nuevo_proyecto
+  cd $nuevo_proyecto
 
   # Instala python, pip y python-venv
   if ! python3 --version || ! pip3 --version; then
