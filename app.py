@@ -5,18 +5,18 @@ app: Flask = Flask(__name__)
 
 
 @app.route("/")
-def home() -> str:
-    pass
+def home():
+    return render_template("home.html")
 
 
-@app.route("")
-def contact() -> str:
-    pass
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 
-@app.route("")
-def about_us() -> str:
-    pass
+@app.route("/about_us")
+def about_us():
+    return render_template("about_us.html")
 
 
 if __name__ == "__main__":
