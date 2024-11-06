@@ -18,6 +18,10 @@ def contact():
 def about_us():
     return render_template("about_us.html")
 
+@app.route("/liyue")
+def liyue():
+    return render_template("naciones/liyue/liyue.html")
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
