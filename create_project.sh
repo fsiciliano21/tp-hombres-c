@@ -26,9 +26,9 @@ if ! [[ -d '$nuevo_proyecto' ]]; then
   . .venv/bin/activate
 
   # Instala Flask
-  pip3 install Flask
-  pipenv install flask
-  pipenv shell
+  pip install Flask
+  #pipenv install flask
+  #pipenv shell
 else
   echo "Error el proyecto ya existe"
 fi
