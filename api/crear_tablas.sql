@@ -7,16 +7,14 @@ create table personaje(
   elemento varchar(50) not null,
 );
 
-create table stats(
+create table stats_principales(
   vida int not null,
   ataque int not null,
   defensa int not null,
-);
-
-create table proposito(
   maestria varchar(50) not null,
-  recarga int not null,
-  critico int not null,
+  recarga_energia int not null,
+  probabilidad_critico int not null,
+  danio_critico int not null,
 );
 
 create table arma(
@@ -24,7 +22,7 @@ create table arma(
   refinamiento int not null,
 );
 
-create table taletos(
+create table talentos(
   ataque int not null,
   elemental varchar(50) not null,
   ultimate int not null,
