@@ -11,7 +11,7 @@ create table stats_principales(
   vida int not null,
   ataque int not null,
   defensa int not null,
-  maestria varchar(50) not null,
+  maestria int not null,
   recarga_energia int not null,
   probabilidad_critico int not null,
   danio_critico int not null,
