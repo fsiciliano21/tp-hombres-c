@@ -24,6 +24,6 @@ create table arma(
 
 create table talentos(
   ataque int not null,
-  elemental varchar(50) not null,
+  elemental int not null,
   ultimate int not null,
 );
