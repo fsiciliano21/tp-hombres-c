@@ -1,29 +1,39 @@
 USE db_name;
 
-create table personaje(
-  nombre varchar(50) not null,
-  edad int not null,
-  region varchar(50) not null,
-  elemento varchar(50) not null,
+CREATE TABLE personaje(
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  nombre varchar(50) NOT NULL,
+  edad INT NOT NULL,
+  region varchar(50) NOT NULL,
+  elemento varchar(50) NOT NULL
 );
 
-create table stats_principales(
-  vida int not null,
-  ataque int not null,
-  defensa int not null,
-  maestria int not null,
-  recarga_energia int not null,
-  probabilidad_critico int not null,
-  danio_critico int not null,
+CREATE TABLE stats_principales(
+  ID INT NOT NULL,
+  vida INT NOT NULL,
+  ataque INT NOT NULL,
+  defensa INT NOT NULL,
+  maestria INT NOT NULL,
+  recarga_energia INT NOT NULL,
+  probabilidad_critico INT NOT NULL,
+  danio_critico INT NOT NULL,
+  FOREIGN KEY(ID) REFERENCES personaje(ID),
+  PRIMARY KEY(ID)
 );
 
-create table arma(
-  nivel int not null,
-  refinamiento int not null,
+CREATE TABLE arma(
+  ID INT NOT NULL,
+  nivel INT NOT NULL,
+  refinamiento INT NOT NULL,
+  FOREIGN KEY(ID) REFERENCES personaje(ID),
+  PRIMARY KEY(ID)
 );
 
-create table talentos(
-  ataque int not null,
-  elemental int not null,
-  ultimate int not null,
+CREATE TABLE talentos(
+  ID INT NOT NULL,
+  ataque INT NOT NULL,
+  elemental INT NOT NULL,
+  ultimate INT NOT NULL,
+  FOREIGN KEY(ID) REFERENCES personaje(ID),
+  PRIMARY KEY(ID)
 );
