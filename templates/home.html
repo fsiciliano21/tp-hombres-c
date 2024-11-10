@@ -1,1 +1,18 @@
 {% extends "base.html" %}
+
+{% block main %}
+<div class="map-container">
+    <img src="{{ url_for('static', filename='images/mapa_teyvat.png') }}" alt="Mapa de Teyvat" class="map-image">
+    
+    <div class="pins">
+        <img src="{{ url_for('static', filename='images/teleport.jpg') }}" alt="Pin 1" class="pin" style="top: 20%; left: 30%;">
+        <img src="{{ url_for('static', filename='images/teleport.jpg') }}" alt="Pin 2" class="pin" style="top: 40%; left: 50%;">
+        <img src="{{ url_for('static', filename='images/teleport.jpg') }}" alt="Pin 3" class="pin" style="top: 60%; left: 20%;">
+    </div>
+    
+    <div class="welcome-message">
+        <p>Bienvenido a Teyvat</p>
+        <p>Seleccione una región para continuar</p>
+    </div>
+</div>
+{% endblock %}

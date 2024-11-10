@@ -14,9 +14,9 @@ def contact():
 def about_us():
     return render_template("about_us.html")
 
-@app.route("/liyue")
+""" @app.route("/liyue")
 def liyue():
-    return render_template("naciones/liyue/liyue.html")
+    return render_template("naciones/liyue/liyue.html") """
 
 
 if __name__ == "__main__":
