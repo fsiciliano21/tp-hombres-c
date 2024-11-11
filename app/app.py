@@ -12,7 +12,7 @@ def home():
 @app.route("/personaje")
 def personaje():
   try:
-    response = requests.get(API_URL+'personajes')
+    response = requests.get(API_URL+'personaje')
     response.raise_for_status()
     personajes = response.json()
   except requests.exceptions.RequestException as e:
