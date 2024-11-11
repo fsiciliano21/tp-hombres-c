@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liyue</title>
+</head>
+<body>
+    <img src="{{url_for('static', filename='images/naciones/liyue/fondo_liyue.png')}}" alt="">
+    <img src="{{url_for('static', filename='images/naciones/liyue/boton_liyue.png')}}" alt="">
+    
+    <h1>
+        Contrato de Exploración en Liyue
+    </h1>
+    <h2>
+        Partes Contratantes: El Viajero y la Nación de Liyue
+    </h2>
+    
+    {% include 'naciones/liyue/contrato.html'%}
+    
+</body>
+</html>

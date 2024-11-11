@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Titulo del personajes </title>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>edad</th>
+    <th>region</th>
+    <th>elemento</th>
+  </tr>
+  <tr>
+  {% for personaje in personajes %}
+    <td>{{personaje.ID}}</td>
+    <td>{{personaje.nombre}}</td>
+    <td>{{personaje.region}}</td>
+    <td>{{personaje.elemento}}</td>
+
+  <td><a href="#" class="button">Ver</a></td>
+  </tr>
+  {% endfor %}
+
+  </body>
+</html>
