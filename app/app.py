@@ -33,18 +33,5 @@ def about_us():
 def liyue():
     return render_template("naciones/liyue/liyue.html") """
 
-"""@app.route("/")
-def personajes():
-  try:
-    response = requests.get(API_URL+'personajes')
-    response.raise_for_status()
-    personajes = response.json()
-  except requests.exceptions.RequestException as e:
-    print(f"Error fetching data: {e}")
-    personajes = []
-
-  return render_template('personajes.html', personajes=personajes)
-"""
-
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
