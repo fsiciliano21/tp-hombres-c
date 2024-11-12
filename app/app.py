@@ -9,6 +9,18 @@ app: Flask = Flask(__name__)
 def home():
     return render_template("home.html")
 
+@app.route("/personaje")
+def personaje():
+  try:
+    response = requests.get(API_URL+'personaje')
+    response.raise_for_status()
+    personajes = response.json()
+  except requests.exceptions.RequestException as e:
+    print(f"Error fetching data: {e}")
+    personajes = []
+
+    return render_template("personaje.html")
+
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
@@ -25,18 +37,6 @@ def about_us():
         {"apellido":"Moyano", "nombre":"Benjamin", "padron":"111613"},
     ]
     return render_template("about_us.html", integrantes=integrantes)
-
-@app.route("/personaje")
-def personaje():
-  try:
-    response = requests.get(API_URL+'personaje')
-    response.raise_for_status()
-    personajes = response.json()
-  except requests.exceptions.RequestException as e:
-    print(f"Error fetching data: {e}")
-    personajes = []
-
-    return render_template("personaje.html")
 
 """ @app.route("/liyue")
 def liyue():
