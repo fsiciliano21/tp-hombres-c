@@ -11,8 +11,7 @@ body, html {
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
-    background: "{{ url_for('static', filename='images/naciones/monstad/fondo_Monstad.jpg') }}" no-repeat center center fixed; /* Imagen de fondo */
-    background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
+    background: url('/static/images/naciones/monstad/fondo_Monstad.jpg') no-repeat center center fixed;    background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
     color: #fff; /* Asegura que el texto sea visible sobre el fondo */
 }
 
@@ -53,7 +52,7 @@ body, html {
 .title-box {
     position: absolute;
     top: 20px;
-    background: "{{ url_for('static', filename='images/Marco_Titulo.jpg') }}" no-repeat center center / contain; /* Imagen de fondo */
+    background: url('/static/images/Marco_Titulo.jpg') no-repeat center center / contain; /* Imagen de fondo */
     width: 80%;
     height: 120px;
     display: flex;
