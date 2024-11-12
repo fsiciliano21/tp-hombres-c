@@ -1,2 +1,26 @@
 {% extends "base.html" %}
-<h1>about us prueba</h1>
+
+{% block title %} Sobre nosostros {% endblock %}
+
+{% block main %}
+
+
+<div class=about_us>
+<h1 > Integrantes del grupo </h1>
+  <table>
+    <tr>
+      <th> Nombre </th>
+      <th> Apellido </th>
+  	  <th> Padrón </th>
+    </tr>
+    {% for integrante in integrantes %}
+      <tr>
+        <td>  {{integrante.nombre}} </td>
+        <td>  {{integrante.apellido}} </td>
+        <td>  {{integrante.padron}} </td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

@@ -109,3 +109,24 @@ body, html {
     width: auto;
     min-width: 200px;
 }
+
+.about_us {
+	text-align: center;
+  padding: 0;
+  position:relative;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
