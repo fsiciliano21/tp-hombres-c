@@ -18,6 +18,10 @@ def about_us():
 def liyue():
     return render_template("naciones/liyue/liyue.html") """
 
+@app.route("/venti")
+def venti():
+    return render_template("arcontes/venti.html")
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
