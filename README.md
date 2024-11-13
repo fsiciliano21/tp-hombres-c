@@ -14,5 +14,13 @@
 
 *En este primer capítulo, encontrarás una guía para instalar los recursos necesarios para tu aventura en Teyvat. A continuación, te presentamos el listado de packs que podrás descargar:*
 
-- Elemento 1
-- Elemento 2
+- $ git clone --depth=1 "git@github.com:fsiciliano21/tp-hombres-c.git"
+- $ mkdir -p tevyat
+- $ cp tp-hombres-c/create_project.bash tp-hombres-c/requirements.txt tevyat/
+- $ cd tevyat/
+- $ bash create_proyect.bash # Esto crea los archivos necesarios para Flask
+- $ pip3 requirements.txt # Esto instala las dependencias necesarias para Flask y mysql
+- $ cp ../tp-hombres-c.git/api/* api/
+- $ cp ../tp-hombres-c.git/app/* app/
+- $ sudo mariadbd-safe --skip-grant-tables & disown
+- $ mariadb-safe -u root -p < api/crear_tablas.sql
