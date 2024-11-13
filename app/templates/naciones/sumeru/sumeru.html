@@ -1,12 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    <link href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet">
-  </head>
-  <body>
-  
-  </body>
-</html>
+{% extends "base_zonas.html" %}
+
+{% block titulo %} Sumeru {% endblock %}
+
+{% block cuerpo %}
+
+<div class="bg" style="background-image: url('../../../static/images/naciones/sumeru/fondo.png');"}>
+  <button>
+    <a href="{{ url_for('home')}}">volver</a>
+  </button>
+
+    <div class="text">
+      <p> Desde tiempos antiguos, Sumeru ha sido un lugar mágico, lleno de sabiduría, donde el conocimiento crece entre hermosos bosques y altas montañas. </p>
+      <img src="../../../static/images/naciones/sumeru/boton.png">
+
+      <p> Al principio, Sumeru era un refugio de paz, donde sabios y estudiantes se reunían para compartir sus ideas y aprender juntos. Pero, con el tiempo, las ambiciones comenzaron a surgir. La Academia de Sumeru, un lugar especial para el conocimiento, se convirtió en un campo de discusiones, y algunos olvidaron que la verdadera sabiduría viene de ser amables y de conectar con los demás. </p>
+
+      <p> He visto a mi pueblo sufrir, atrapado entre querer avanzar y cuidar sus raíces. Aprender no debe ser un viaje solitario; cada descubrimiento debe ayudar a todos. </p>
+
+      <p> En mi camino, he aprendido que la verdadera sabiduría no solo está en los libros, sino en el corazón de cada persona. Espero que, a pesar de los desafíos, Sumeru siga siendo un lugar donde la sabiduría florezca, un hogar para quienes buscan no solo conocer, sino también comprender y amar." </p>
+    </div>
+</div>
+
+{% endblock %}
