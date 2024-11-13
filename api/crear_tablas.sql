@@ -1,4 +1,6 @@
-USE db_name;
+CREATE DATABASE genshin;
+
+USE genshin;
 
 CREATE TABLE personaje(
   ID INT AUTO_INCREMENT PRIMARY KEY,
