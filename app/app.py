@@ -38,6 +38,10 @@ def about_us():
     ]
     return render_template("about_us.html", integrantes=integrantes)
 
+@app.route("/sumeru")
+def sumeru():
+    return render_template("naciones/sumeru/sumeru.html")
+
 """ @app.route("/liyue")
 def liyue():
     return render_template("naciones/liyue/liyue.html") """
