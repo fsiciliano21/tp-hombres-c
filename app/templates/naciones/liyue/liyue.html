@@ -1,22 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/liyue_style/liyue.css') }}">
-    <title>Liyue</title>
-</head>
-<body>
-    <img id="boton" src="{{url_for('static', filename='images/naciones/liyue/sello_geo.png')}}" alt="">
-    
-    <h1>
-        Contrato de Exploración en Liyue
-    </h1>
-    <h2>
-        Partes Contratantes: El Viajero y la Nación de Liyue
-    </h2>
-    
-    {% include 'naciones/liyue/contrato.html'%}
-    
-</body>
-</html>
+{% extends "base_zonas.html" %}
+
+{% block titulo %} Sumeru - La Tierra de la Sabiduría y el Conocimiento {% endblock %}
+
+{% block cuerpo %}
+
+<section class="bg" style="background-image: url('{{ url_for('static', filename='images/naciones/liyue/fondo_liyue.png') }}');" alt="Sumero fondo">
+  <button>
+    <a href="{{ url_for('home')}}">volver</a>
+  </button>
+
+    <article class="text">
+      <p> Contrato de Exploración en Liyue </p>
+        <img class="icono" src="{{ url_for('static', filename='images/naciones/liyue/sello_geo.png') }}" alt="Sumeru Boton">
+
+      <p> Partes Contratantes: El Viajero y la Nación de Liyue </p>
+        
+      {% include 'naciones/liyue/contrato.html'%}
+    </article>
+</section>
+
+{% endblock %}
