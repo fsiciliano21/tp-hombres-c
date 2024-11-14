@@ -42,9 +42,13 @@ def about_us():
 def sumeru():
     return render_template("naciones/sumeru/sumeru.html")
 
-""" @app.route("/liyue")
+@app.route("/liyue")
 def liyue():
-    return render_template("naciones/liyue/liyue.html") """
+    return render_template("naciones/liyue/liyue.html")
+
+@app.route("/mondstadt")
+def mondstadt():
+    return render_template("naciones/mondstadt/mondstadt.html")
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
