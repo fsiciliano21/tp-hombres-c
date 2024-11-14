@@ -24,3 +24,7 @@
 - $ cp ../tp-hombres-c.git/app/* app/
 - $ sudo mariadbd-safe --skip-grant-tables & disown
 - $ mariadb-safe -u root -p < api/crear_tablas.sql
+
+Para ejecutar el front, se debe entrar al directorio /app y ejecturae los siguientes comandos.
+- $ export FLASK_APP=app.py
+- $ flask run
