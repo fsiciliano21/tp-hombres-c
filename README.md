@@ -39,3 +39,9 @@
 
 > ./instalacion.sh
 
+<div align="center">
+
+## Capítulo 2
+
+</div>
+
