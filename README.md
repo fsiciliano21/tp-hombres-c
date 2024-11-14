@@ -1,6 +1,19 @@
-<h1 align="center">TP: "Los viajeros de Teyvat"</h1>
+<div align="center">
 
-<h2 align="center">Por "Los Hombres C"</h2>
+# TP: "Los viajeros de Teyvat"
+
+<h2 align="center">
+    Por "Los Hombres C"
+</h2>
+
+</div>
+
+<div align="center">
+
+<br>
+  <a href="##Capítulo 1"><kbd> <br> Instalacíon <br> </kbd></a>&ensp;&ensp;
+  <a href="http://discord.gg/huXuTsav"><kbd> <br> Discord <br> </kbd></a>&ensp;&ensp;
+</div>
 
 ## Prólogo del Aventurero
 
@@ -8,19 +21,21 @@
 
 *Además, te ofreceremos consejos y estrategias para potenciar a tus personajes y optimizar sus composiciones, asegurando que estés preparado para enfrentar cualquier desafío que se presente en tu camino.*
 
-<h2 align="center"> Capítulo 1:</h2>
+<div align="center">
 
-### Instalaciones
+## Capítulo 1
 
-*En este primer capítulo, encontrarás una guía para instalar los recursos necesarios para tu aventura en Teyvat. A continuación, te presentamos el listado de packs que podrás descargar:*
+</div>
 
-- $ git clone --depth=1 "git@github.com:fsiciliano21/tp-hombres-c.git"
-- $ mkdir -p tevyat
-- $ cp tp-hombres-c/create_project.bash tp-hombres-c/requirements.txt tevyat/
-- $ cd tevyat/
-- $ bash create_proyect.bash # Esto crea los archivos necesarios para Flask
-- $ pip3 requirements.txt # Esto instala las dependencias necesarias para Flask y mysql
-- $ cp ../tp-hombres-c.git/api/* api/
-- $ cp ../tp-hombres-c.git/app/* app/
-- $ sudo mariadbd-safe --skip-grant-tables & disown
-- $ mariadb-safe -u root -p < api/crear_tablas.sql
+### 1. Instalacíon
+
+*En este primer capítulo, encontrarás una guía para instalar los recursos necesarios para tu aventura en Teyvat.*
+
+> git clone https://github.com/fsiciliano21/tp-hombres-c.git
+>
+> cd tp-hombres-c
+
+### 2. Script
+
+> ./instalacion.sh
+
