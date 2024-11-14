@@ -31,14 +31,15 @@
 
 *En este primer capítulo, encontrarás una guía para instalar los recursos necesarios para tu aventura en Teyvat.*
 
-> git clone https://github.com/fsiciliano21/tp-hombres-c.git
->
-> cd tp-hombres-c
-
+```
+git clone https://github.com/fsiciliano21/tp-hombres-c.git
+cd tp-hombres-c
+```
 ### 2. Script
 
-> ./instalacion.sh
-
+```
+./instalacion.sh
+```
 <div align="center">
 
 ## Capítulo 2
