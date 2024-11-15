@@ -3,3 +3,6 @@ __pycache__/
 
 # Ignorar entorno virtual
 .venv/
+
+# Ignorar directorio de cache de Python en la carpeta de la app
+app/__pycache__/

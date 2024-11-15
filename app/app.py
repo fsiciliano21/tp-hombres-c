@@ -19,13 +19,13 @@ def personaje():
     print(f"Error fetching data: {e}")
     personajes = []
 
-    return render_template("personaje.html")
+    return render_template("menu/personaje.html")
 
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
 
-@app.route("/about_us")
+@app.route("/nosotros")
 def about_us():
     integrantes = [
         {"apellido":"Gonzales", "nombre":"Gabriel Leonel", "padron":"112607"},
@@ -36,7 +36,15 @@ def about_us():
         {"apellido":"Lopez", "nombre":"Lazaro", "padron":"111312"},
         {"apellido":"Moyano", "nombre":"Benjamin", "padron":"111613"},
     ]
-    return render_template("about_us.html", integrantes=integrantes)
+    return render_template("menu/about_us.html", integrantes=integrantes)
+
+@app.route("/equipos")
+def team():
+    return render_template("menu/equipos.html")
+
+@app.route("/guia")
+def guide():
+    return render_template("menu/guia.html")
 
 @app.route("/sumeru")
 def sumeru():
