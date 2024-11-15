@@ -8,6 +8,7 @@ QUERY_PERSONAJE_BY_ID = "SELECT nombre, edad, region, elemento FROM personaje WH
 
 QUERY_ADD_PERSONAJE = "INSERT INTO personaje (nombre, edad, region, elemento) VALUES (:nombre, :edad, :region, :elemento)"
 
+QUERY_UPDATE_PERSONAJE = "UPDATE personaje SET nombre = COALESCE(:nombre, nombre), edad = COALESCE(:edad, edad), region = COALESCE(:region, region), elemento = COALESCE(:elemento, elementos) WHERE ID = :id"
 engine = create_engine("mysql+mysqlconnector://root@localhost:3306/test")
 
 def run_query(query, parameters=None):
