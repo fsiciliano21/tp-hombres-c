@@ -12,9 +12,7 @@ engine = create_engine("mysql+mysqlconnector://root@localhost:3306/test")
 def run_query(query, parameters=None):
   with engine.connect() as conn:
     result = conn.execute(text(query), parameters)
-    conn.commit()
-
-  return result
+    return result
 
 def all_personajes():
   return run_query(QUERY_TODOS_LOS_PERSONAJES).fetchall()
