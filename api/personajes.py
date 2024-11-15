@@ -30,10 +30,13 @@ def add_personaje(nombre, edad, region, elemento):
   return {"message": "Personaje creado"}
 
 def update_personaje(id, nombre=None, edad=None, region=None, elemento=None):
-  result = run_query(QUERY_UPDATE_PERSONAJE, {'id': id, 'nombre': nombre, 'edad': edad, 'region': region, 'elemento': elemento})
-  if result.rowcount == 0:
-      return {"error": "Personaje no encontrado"}
-  return {"message": "Personaje actualizado"}
+    try:
+        result = run_query(QUERY_UPDATE_PERSONAJE, {'id': id, 'nombre': nombre, 'edad': edad, 'region': region, 'elemento': elemento})
+        if result.rowcount == 0:
+            return {"error": "Personaje no encontrado"}
+        return {"message": "Personaje actualizado"}
+    except SQLAlchemyError as e:
+        return {"error": str(e)}
 
 def delete_personaje(id):
   try:
