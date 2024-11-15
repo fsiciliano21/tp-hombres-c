@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> {% block titulo %} {% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
@@ -12,12 +12,12 @@
             <div class="icon">
               <a href="{{ url_for('personaje')}}">
                     <img src="{{ url_for('static', filename='images/menu/pjicon.png') }}" alt="Personaje">
-                    <span>Personaje</span>
+                    <span>Personajes</span>
                 </a>
             </div>
             <div class="icon">
                 <a href="">
-                    <img src="{{ url_for('static', filename='images/menu/personas.png') }}" alt="Equipos">
+                    <img src="{{ url_for('static', filename='images/menu/equipos.png') }}" alt="Equipos">
                     <span>Equipos</span>
                 </a>
             </div>
@@ -42,7 +42,7 @@
         </div>
 
         {% block main %}
-        
+
         {% endblock %}
     </div>
 </body>

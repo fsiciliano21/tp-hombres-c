@@ -1,9 +1,10 @@
 body, html {
-    margin: 0;
-    padding: 0;
+
     font-family: Arial, sans-serif;
     background-color: #4f453f;
     height: 100%;
+    display: flex;
+
 }
 
 .container {
@@ -20,7 +21,7 @@ body, html {
     flex-direction: column;
     align-items: center;
     padding-top: 60px;
-    background-image: url("../images/sidebar.jpg");
+    background-image: url("../images/menu/sidebar.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     text-align: center;
@@ -59,12 +60,14 @@ body, html {
     height: 100vh;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .map-image {
-    width: 1920px;  /* tamaño fijo en píxeles */
-    height: 1080px; /* tamaño fijo en píxeles */
-    object-fit: none; /* evitar redimensionamiento */
+    max-width: 100%;
+    height: auto;
 }
 
 .pins {
@@ -102,7 +105,7 @@ body, html {
     padding: 10px 20px;
     border-radius: 8px;
     text-align: center;
-    background-image: url("../images/presentacion.jpg");
+    background-image: url("../images/Marco_Titulo.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

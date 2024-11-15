@@ -9,7 +9,7 @@ app: Flask = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route("/personaje")
+@app.route("/personajes")
 def personaje():
   try:
     response = requests.get(API_URL+'personaje')
