@@ -4,7 +4,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 QUERY_TODOS_LOS_PERSONAJES = "SELECT ID, nombre, edad, region, elemento FROM personaje"
 
-QUERY_PERSONAJE_BY_ID = "SELECT nombre, edad, region, elemento FROM alumnos WHERE ID = :ID"
+QUERY_PERSONAJE_BY_ID = "SELECT nombre, edad, region, elemento FROM personaje WHERE ID = :ID"
 
 engine = create_engine("mysql+mysqlconnector://root@localhost:3306/test")
 
