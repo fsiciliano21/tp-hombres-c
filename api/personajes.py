@@ -26,8 +26,11 @@ def personaje_by_id(id):
   return run_query(QUERY_PERSONAJE_BY_ID, {'ID': id}).fetchall()
 
 def add_personaje(nombre, edad, region, elemento):
-  run_query(QUERY_ADD_PERSONAJE, {'nombre': nombre, 'edad': edad, 'region': region, 'elemento': elemento})
-  return {"message": "Personaje creado"}
+    try:
+        run_query(QUERY_ADD_PERSONAJE, {'nombre': nombre, 'edad': edad, 'region': region, 'elemento': elemento})
+        return {"message": "Personaje creado"}
+    except SQLAlchemyError as e:
+        return {"error": str(e)}
 
 def update_personaje(id, nombre=None, edad=None, region=None, elemento=None):
     try:
