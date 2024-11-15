@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> {% block titulo %} {% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
 </head>
 <body>
     <div class="container">
+
         <div class="sidebar">
+
             <div class="icon">
-              <a href="{{ url_for('personaje')}}">
+
+              <a href="/personaje">
                     <img src="{{ url_for('static', filename='images/menu/pjicon.png') }}" alt="Personaje">
                     <span>Personajes</span>
                 </a>
+
             </div>
             <div class="icon">
-                <a href="">
+
+                <a href="/equipos">
                     <img src="{{ url_for('static', filename='images/menu/equipos.png') }}" alt="Equipos">
                     <span>Equipos</span>
                 </a>
+
             </div>
             <div class="icon">
-                <a href="">
+
+                <a href="/guia">
                     <img src="{{ url_for('static', filename='images/menu/guide.png') }}" alt="Guía">
                     <span>Guía</span>
                 </a>
+
             </div>
             <div class="icon">
-                <a href="{{ url_for('home') }}">
+
+                <a href="/">
                     <img src="{{ url_for('static', filename='images/menu/book.png') }}" alt="Mapa Interactivo">
                     <span>Mapa Interactivo</span>
                 </a>
+
             </div>
             <div class="icon">
-                <a href="">
-                    <img src="{{ url_for('static', filename='images/menu/settings.png') }}" alt="Tareas">
-                    <span>Tareas</span>
+
+                <a href="/nosotros">
+                    <img src="{{ url_for('static', filename='images/menu/settings.png') }}" alt="Nosotros">
+                    <span>Nosotros</span>
                 </a>
+
             </div>
         </div>
 
