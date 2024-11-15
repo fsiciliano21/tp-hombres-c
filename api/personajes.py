@@ -6,6 +6,8 @@ QUERY_TODOS_LOS_PERSONAJES = "SELECT ID, nombre, edad, region, elemento FROM per
 
 QUERY_PERSONAJE_BY_ID = "SELECT nombre, edad, region, elemento FROM personaje WHERE ID = :ID"
 
+QUERY_ADD_PERSONAJE = "INSERT INTO personaje (nombre, edad, region, elemento) VALUES (:nombre, :edad, :region, :elemento)"
+
 engine = create_engine("mysql+mysqlconnector://root@localhost:3306/test")
 
 def run_query(query, parameters=None):
