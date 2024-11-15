@@ -34,3 +34,9 @@ def update_personaje(id, nombre=None, edad=None, region=None, elemento=None):
   if result.rowcount == 0:
       return {"error": "Personaje no encontrado"}
   return {"message": "Personaje actualizado"}
+
+def delete_personaje(id):
+  result = run_query(QUERY_DELETE_PERSONAJE,{'id':id})
+  if result.rowcount == 0:
+    return {"error": "Personaje no encontrado"}
+  return {"message": "Personaje eliminado"}
