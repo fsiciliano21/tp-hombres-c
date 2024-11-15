@@ -1,6 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine
-from sqlalchemy import text
+from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
 QUERY_TODOS_LOS_PERSONAJES = "SELECT ID, nombre, edad, region, elemento FROM personaje"
