@@ -8,11 +8,11 @@ QUERY_PERSONAJE_BY_ID = "SELECT nombre, edad, region, elemento FROM personaje WH
 
 QUERY_ADD_PERSONAJE = "INSERT INTO personaje (nombre, edad, region, elemento) VALUES (:nombre, :edad, :region, :elemento)"
 
-QUERY_UPDATE_PERSONAJE = "UPDATE personaje SET nombre = COALESCE(:nombre, nombre), edad = COALESCE(:edad, edad), region = COALESCE(:region, region), elemento = COALESCE(:elemento, elementos) WHERE ID = :id"
+QUERY_UPDATE_PERSONAJE = "UPDATE personaje SET nombre = COALESCE(:nombre, nombre), edad = COALESCE(:edad, edad), region = COALESCE(:region, region), elemento = COALESCE(:elemento, elemento) WHERE ID = :id"
 
-QUERY_DELETE_PERSONAJE = "DELETE FROM personaje WHERE ID = :=id"
+QUERY_DELETE_PERSONAJE = "DELETE FROM personaje WHERE ID = :id"
 
-engine = create_engine("mysql+mysqlconnector://root@localhost:3306/test")
+engine = create_engine("mysql+mysqlconnector://root:contraseña@localhost:3306/genshin")#cambiar contraseña por la root
 
 def run_query(query, parameters=None):
   with engine.connect() as conn:
