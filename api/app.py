@@ -4,7 +4,6 @@ import personajes
 
 app = Flask(__name__)
 
-"""test"""
 @app.route('/api/personajes', methods=['GET'])
 def get_all_personajes():
   try:
