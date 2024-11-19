@@ -5,7 +5,7 @@ import personajes
 app = Flask(__name__)
 
 """test"""
-@app.route('/api/v1/personajes', methods=['GET'])
+@app.route('/api/personajes', methods=['GET'])
 def get_all_personajes():
   try:
     result = personajes.all_personajes()
@@ -24,7 +24,7 @@ def get_all_personajes():
 
   return jsonify(response), 200
 
-@app.route('/api/v1/personajes/<int:id>', methods=['GET'])
+@app.route('/api/personajes/<int:id>', methods=['GET'])
 def get_by_id(id):
     try:
         result = personajes.personaje_by_id(id)
@@ -42,7 +42,7 @@ def get_by_id(id):
       'elemento': row[3]
     }), 200
 
-@app.route('/api/v1/personajes', methods=['POST'])
+@app.route('/api/personajes', methods=['POST'])
 def create_personajes():
   data = request.json
   try:
@@ -53,7 +53,7 @@ def create_personajes():
   except Exception as e:
      return jsonify({'error': str(e)}), 500
 
-@app.route('/api/v1/personajes/<int:id>', methods=['PUT'])
+@app.route('/api/personajes/<int:id>', methods=['PUT'])
 def update_personaje(id):
    data = request.json
    try:
@@ -68,7 +68,7 @@ def update_personaje(id):
    except Exception as e:
       return jsonify({'error': str(e)}), 500
    
-@app.route('/api/v1/personajes/<int:id>', methods=['DELETE'])
+@app.route('/api/personajes/<int:id>', methods=['DELETE'])
 def delete_personaje(id):
    try:
       response = personajes.delete_personaje(id)
