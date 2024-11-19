@@ -12,11 +12,12 @@ QUERY_UPDATE_PERSONAJE = "UPDATE personaje SET nombre = COALESCE(:nombre, nombre
 
 QUERY_DELETE_PERSONAJE = "DELETE FROM personaje WHERE ID = :id"
 
-engine = create_engine("mysql+mysqlconnector://root:contraseña@localhost:3306/genshin")#cambiar contraseña por la root
+engine = create_engine("mysql+mysqlconnector://root:contraseña@localhost:3306/genshin")#cambiar "contraseña" por la contraseña del root
 
 def run_query(query, parameters=None):
   with engine.connect() as conn:
-    result = conn.execute(text(query), parameters)
+    with conn.begin():
+      result = conn.execute(text(query), parameters)
     return result
 
 def all_personajes():
