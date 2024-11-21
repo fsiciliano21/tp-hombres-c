@@ -21,9 +21,6 @@ def personaje():
 
     return render_template("menu/personaje.html")
 
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
 
 @app.route("/nosotros")
 def about_us():
@@ -36,11 +33,30 @@ def about_us():
         {"apellido":"Lopez", "nombre":"Lazaro", "padron":"111312"},
         {"apellido":"Moyano", "nombre":"Benjamin", "padron":"111613"},
     ]
-    return render_template("menu/about_us.html", integrantes=integrantes)
+    return render_template("menu/nosotros.html", integrantes=integrantes)
 
 @app.route("/equipos")
 def team():
-    return render_template("menu/equipos.html")
+    personajes = [
+        {"nombre":"Diluc", "elemento":"Pyro", "arma":"Claymore", "rol":"DPS"},
+        {"nombre":"Venti", "elemento":"Anemo", "arma":"Arco", "rol":"Support"},
+        {"nombre":"Jean", "elemento":"Anemo", "arma":"Espada", "rol":"DPS"},
+        {"nombre":"Klee", "elemento":"Pyro", "arma":"Catalizador", "rol":"DPS"},
+        {"nombre":"Zhongli", "elemento":"Geo", "arma":"Lanza", "rol":"DPS"},
+        {"nombre":"Ganyu", "elemento":"Cryo", "arma":"Arco", "rol":"DPS"},
+        {"nombre":"Albedo", "elemento":"Geo", "arma":"Espada", "rol":"DPS"},
+        {"nombre":"Xiao", "elemento":"Anemo", "arma":"Lanza", "rol":"DPS"},
+        {"nombre":"Eula", "elemento":"Cryo", "arma":"Claymore", "rol":"DPS"},
+        {"nombre":"Ayaka", "elemento":"Cryo", "arma":"Espada", "rol":"DPS"},
+        {"nombre":"Kazuha", "elemento":"Anemo", "arma":"Espada", "rol":"DPS"},
+        {"nombre":"Yoimiya", "elemento":"Pyro", "arma":"Arco", "rol":"DPS"},
+        {"nombre":"Sayu", "elemento":"Anemo", "arma":"Claymore", "rol":"DPS"},
+        {"nombre":"Raiden", "elemento":"Electro", "arma":"Espada", "rol":"DPS"},
+        {"nombre":"Sara", "elemento":"Electro", "arma":"Arco", "rol":"DPS"},
+        {"nombre":"Kokomi", "elemento":"Hidro", "arma":"Catalizador", "rol":"DPS"},
+        {"nombre":"Thoma", "elemento":"Pyro", "arma":"Lanza", "rol":"DPS"},
+        {"nombre":"Yae", "elemento":"Electro", "arma":"Catalizador", "rol":"DPS"}]
+    return render_template("menu/equipos.html", personajes=personajes)
 
 @app.route("/guia")
 def guide():
@@ -57,6 +73,19 @@ def liyue():
 @app.route("/mondstadt")
 def mondstadt():
     return render_template("naciones/mondstadt/mondstadt.html")
+
+@app.route("/inazuma")
+def inazuma():
+    return render_template("naciones/inazuma/inazuma.html")
+
+@app.route("/fontaine")
+def fontaine():
+    return render_template("naciones/fontaine/fontaine.html")
+
+@app.route("/natlan")
+def natlan():
+    return render_template("naciones/natlan/natlan.html")
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)

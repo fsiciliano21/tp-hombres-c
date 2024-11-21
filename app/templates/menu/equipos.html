@@ -2,10 +2,31 @@
 
 {% block titulo %} Equipos {% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu/menu.css') }}">
+{% endblock %}
+
 {% block main %}
 
+        <div class="welcome-message">
+            <h1>Equipos</h1>
+        </div>
 
+        <div class="contenedor">
+            <div class="buscador">
+                <input type="text" id="buscador" placeholder="Buscar por nombre..." onkeyup="filtrarPersonajes()">
+            </div>
+            <ul id="lista-personajes">
+                {% for personaje in personajes %}
+                <li>
+                    <strong>{{ personaje.nombre }}</strong>: Elemento {{ personaje.elemento }}, Arma {{ personaje.arma }}, Rol {{ personaje.rol }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
 
+{% endblock %}
 
-
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/filtrador.js') }}"></script>
 {% endblock %}
