@@ -2,9 +2,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
-QUERY_TODOS_LOS_PERSONAJES = "SELECT ID, nombre, edad, region, elemento FROM personaje"
+QUERY_TODOS_LOS_PERSONAJES = "SELECT id, nombre, edad, region, elemento FROM personaje"
 
-QUERY_PERSONAJE_BY_ID = "SELECT nombre, edad, region, elemento FROM personaje WHERE ID = :ID"
+QUERY_PERSONAJE_BY_ID = "SELECT nombre, edad, region, elemento FROM personaje WHERE ID = :id"
 
 QUERY_ADD_PERSONAJE = "INSERT INTO personaje (nombre, edad, region, elemento) VALUES (:nombre, :edad, :region, :elemento)"
 
@@ -24,7 +24,7 @@ def all_personajes():
   return run_query(QUERY_TODOS_LOS_PERSONAJES).fetchall()
 
 def personaje_by_id(id):
-  return run_query(QUERY_PERSONAJE_BY_ID, {'ID': id}).fetchall()
+  return run_query(QUERY_PERSONAJE_BY_ID, {'id': id}).fetchall()
 
 def add_personaje(nombre, edad, region, elemento):
     try:

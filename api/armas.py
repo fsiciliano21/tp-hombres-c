@@ -2,11 +2,11 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
-QUERY_TODAS_LAS_ARMAS = "SELECT ID, nivel, refinamiento FROM arma"
+QUERY_TODAS_LAS_ARMAS = "SELECT id, nivel, refinamiento FROM arma"
 
-QUERY_ARMA_BY_ID = "SELECT nivel, refinamiento FROM arma WHERE ID = :ID"
+QUERY_ARMA_BY_ID = "SELECT nivel, refinamiento FROM arma WHERE ID = :id"
 
-QUERY_ADD_ARMA = "INSERT INTO arma (ID, nivel, refinamiento) VALUES (:ID, :nivel, :refinamiento)"
+QUERY_ADD_ARMA = "INSERT INTO arma (id, nivel, refinamiento) VALUES (:id, :nivel, :refinamiento)"
 
 QUERY_UPDATE_ARMA = "UPDATE arma SET nivel = COALESCE(:nivel, nivel), refinamiento = COALESCE(:refinamiento, refinamiento) WHERE ID = :id"
 
@@ -24,11 +24,11 @@ def all_armas():
   return run_query(QUERY_TODAS_LAS_ARMAS).fetchall()
 
 def arma_by_id(id):
-  return run_query(QUERY_ARMA_BY_ID, {'ID': id}).fetchall()
+  return run_query(QUERY_ARMA_BY_ID, {'id': id}).fetchall()
 
 def add_arma(id, nivel, refinamiento):
     try:
-        run_query(QUERY_ADD_ARMA, {'ID': id, 'nivel': nivel, 'refinamiento': refinamiento})
+        run_query(QUERY_ADD_ARMA, {'id': id, 'nivel': nivel, 'refinamiento': refinamiento})
         return {"message": "Arma creada"}
     except SQLAlchemyError as e:
         return {"error": str(e)}

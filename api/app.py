@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 
-import personajes, armas
+import personajes, armas, stats
 
 app = Flask(__name__)
 
@@ -14,7 +14,7 @@ def get_all_personajes():
   response = []
   for row in result:
     response.append({
-      'ID': row[0],
+      'id': row[0],
       'nombre': row[1],
       'edad': row[2],
       'region': row[3],
@@ -87,7 +87,7 @@ def get_all_armas():
   response = []
   for row in result:
     response.append({
-      'ID': row[0],
+      'id': row[0],
       'nivel': row[1],
       'refinamiento': row[2]
     })
@@ -143,6 +143,88 @@ def delete_arma(id):
       return jsonify({'error': str(e)}), 500
 
 ####################################################################################
+
+@app.route('/api/stats', methods=['GET'])
+def get_all_stats():
+  try:
+    result = stats.all_stats()
+  except Exception as e:
+    return jsonify({'error': str(e)}), 500
+
+  response = []
+  for row in result:
+    response.append({
+      'id': row[0],
+      'vida': row[1],
+      'ataque': row[2],
+      'defensa': row[3],
+      'maestria': row[4],
+      'recarga_energia': row[5],
+      'probabilidad_critico': row[6],
+      'danio_critico': row[7]
+    })
+
+  return jsonify(response), 200
+
+@app.route('/api/stats/<int:id>', methods=['GET'])
+def get_by_stats_id(id):
+    try:
+        result = stats.stats_by_id(id)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    if not result:
+        return jsonify({'error': 'No se encontraron las stats'}), 404
+
+    row = result[0]
+    return jsonify({
+      'vida': row[0],
+      'ataque': row[1],
+      'defensa': row[2],
+      'maestria': row[3],
+      'recarga_energia': row[4],
+      'probabilidad_critico': row[5],
+      'danio_critico': row[6]
+    }), 200
+
+@app.route('/api/stats', methods=['POST'])
+def create_stats():
+  data = request.json
+  try:
+    response = stats.add_stats(
+       data['id'], data['vida'], data['ataque'], data['defensa'], data['maestria'], data['recarga_energia'], data['probabilidad_critico'], data['danio_critico']
+    )
+    return jsonify(response), 201
+  except Exception as e:
+     return jsonify({'error': str(e)}), 500
+
+@app.route('/api/stats/<int:id>', methods=['PUT'])
+def update_stats(id):
+   data = request.json
+   try:
+      response = stats.update_stats(
+         id,
+         vida = data.get('vida'),
+         ataque = data.get('ataque'),
+         defensa = data.get('defensa'),
+         maestria = data.get('maestria'),
+         recarga_energia = data.get('recarga_energia'),
+         probabilidad_critico = data.get('probabilidad_critico'),
+         danio_critico = data.get('danio_critico')
+      )
+      return jsonify(response), 200
+   except Exception as e:
+      return jsonify({'error': str(e)}), 500
    
+@app.route('/api/stats/<int:id>', methods=['DELETE'])
+def delete_stats(id):
+   try:
+      response = stats.delete_stats(id)
+      return jsonify(response), 200
+   except Exception as e:
+      return jsonify({'error': str(e)}), 500
+
+####################################################################################
+
 if __name__ == "__main__":
     app.run("127.0.0.1", port="5001", debug=True)
