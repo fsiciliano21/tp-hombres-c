@@ -247,12 +247,12 @@ def get_all_talentos():
 @app.route('/api/talentos/<int:id>', methods=['GET'])
 def get_by_talentos_id(id):
     try:
-        result = talentos.talentos_by_id(id)
+        result = talentos.talento_by_id(id)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
     if not result:
-        return jsonify({'error': 'No se encontraron los talentos'}), 404
+        return jsonify({'error': 'No se encontro el talento'}), 404
 
     row = result[0]
     return jsonify({
@@ -265,7 +265,7 @@ def get_by_talentos_id(id):
 def create_talentos():
   data = request.json
   try:
-    response = talentos.add_talentos(
+    response = talentos.add_talento(
        data['id'], data['ataque'], data['elemental'], data['ultimate']
     )
     return jsonify(response), 201
@@ -276,7 +276,7 @@ def create_talentos():
 def update_talentos(id):
    data = request.json
    try:
-      response = talentos.update_talentos(
+      response = talentos.update_talento(
          id,
          ataque = data.get('ataque'),
          elemental = data.get('elemental'),
@@ -289,7 +289,7 @@ def update_talentos(id):
 @app.route('/api/talentos/<int:id>', methods=['DELETE'])
 def delete_talentos(id):
    try:
-      response = talentos.delete_talentos(id)
+      response = talentos.delete_talento(id)
       return jsonify(response), 200
    except Exception as e:
       return jsonify({'error': str(e)}), 500
