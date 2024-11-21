@@ -1,59 +1,65 @@
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
-QUERY_TODOS_LOS_TALENTOS = "SELECT id, ataque, elemental, ultimate FROM talentos"
+# Consultas SQL para la tabla talentos
+QUERY_TODOS_LOS_TALENTOS = "SELECT ID, ataque, elemental, ultimate FROM talentos"
 
-QUERY_TALENTOS_BY_ID = "SELECT ataque, elemental, ultimate FROM talentos WHERE ID = :id"
+QUERY_TALENTO_BY_ID = "SELECT ataque, elemental, ultimate FROM talentos WHERE ID = :ID"
 
-QUERY_ADD_TALENTOS = "INSERT INTO talentos (id, ataque, elemental, ultimate) VALUES (:id, :ataque, :elemental, :ultimate)"
+QUERY_ADD_TALENTO = "INSERT INTO talentos (ID, ataque, elemental, ultimate) VALUES (:ID, :ataque, :elemental, :ultimate)"
 
-QUERY_UPDATE_TALENTOS = """
-UPDATE talentos
-SET
-  ataque = COALESCE(:ataque, ataque),
-  elemental = COALESCE(:elemental, elemental),
-  ultimate = COALESCE(:ultimate, ultimate)
-WHERE ID = :id
+QUERY_UPDATE_TALENTO = """
+UPDATE talentos 
+SET ataque = COALESCE(:ataque, ataque), 
+    elemental = COALESCE(:elemental, elemental), 
+    ultimate = COALESCE(:ultimate, ultimate) 
+WHERE ID = :ID
 """
 
-QUERY_DELETE_TALENTOS = "DELETE FROM talentos WHERE ID = :id"
+QUERY_DELETE_TALENTO = "DELETE FROM talentos WHERE ID = :ID"
 
-engine = create_engine("mysql+mysqlconnector://root:contraseña@localhost:3306/genshin")#cambiar "contraseña" por la contraseña del root
+# Configuración del motor SQLAlchemy
+engine = create_engine("mysql+mysqlconnector://root:contraseña@localhost:3306/genshin") 
 
+# Función genérica para ejecutar consultas
 def run_query(query, parameters=None):
-  with engine.connect() as conn:
-    with conn.begin():
-      result = conn.execute(text(query), parameters)
-    return result
+    with engine.connect() as conn:
+        with conn.begin():
+            result = conn.execute(text(query), parameters)
+        return result
 
+# Función para obtener todos los talentos
 def all_talentos():
-  return run_query(QUERY_TODOS_LOS_TALENTOS).fetchall()
+    return run_query(QUERY_TODOS_LOS_TALENTOS).fetchall()
 
-def talentos_by_id(id):
-  return run_query(QUERY_TALENTOS_BY_ID, {'id': id}).fetchall()
+# Función para obtener un talento por ID
+def talento_by_id(id):
+    return run_query(QUERY_TALENTO_BY_ID, {'ID': id}).fetchall()
 
-def add_talentos(id, ataque, elemental, ultimate):
+# Función para agregar un nuevo talento
+def add_talento(id, ataque, elemental, ultimate):
     try:
-        run_query(QUERY_ADD_TALENTOS, {'id': id, 'ataque': ataque, 'elemental': elemental, 'ultimate': ultimate})
-        return {"message": "Talentos creados"}
+        run_query(QUERY_ADD_TALENTO, {'ID': id, 'ataque': ataque, 'elemental': elemental, 'ultimate': ultimate})
+        return {"message": "Talento creado"}
     except SQLAlchemyError as e:
         return {"error": str(e)}
 
-def update_talentos(id, ataque=None, elemental=None, ultimate=None):
+# Función para actualizar un talento
+def update_talento(id, ataque=None, elemental=None, ultimate=None):
     try:
-        result = run_query(QUERY_UPDATE_TALENTOS, {'id': id, 'ataque': ataque, 'elemental': elemental, 'ultimate': ultimate})
+        result = run_query(QUERY_UPDATE_TALENTO, {'ID': id, 'ataque': ataque, 'elemental': elemental, 'ultimate': ultimate})
         if result.rowcount == 0:
-            return {"error": "Talentos no encontrados"}
-        return {"message": "Talentos actualizados"}
+            return {"error": "Talento no encontrado"}
+        return {"message": "Talento actualizado"}
     except SQLAlchemyError as e:
         return {"error": str(e)}
 
-def delete_talentos(id):
-  try:
-    result = run_query(QUERY_DELETE_TALENTOS,{'id':id})
-    if result.rowcount == 0:
-      return {"error": "Talentos no encontrados"}
-    return {"message": "Talentos eliminada"}
-  except SQLAlchemyError as e:
-    return {"error": str(e)}
+# Función para eliminar un talento
+def delete_talento(id):
+    try:
+        result = run_query(QUERY_DELETE_TALENTO, {'ID': id})
+        if result.rowcount == 0:
+            return {"error": "Talento no encontrado"}
+        return {"message": "Talento eliminado"}
+    except SQLAlchemyError as e:
+        return {"error": str(e)}
