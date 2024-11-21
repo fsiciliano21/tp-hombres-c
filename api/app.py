@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 
-import personajes, armas, stats
+import personajes, armas, stats, talentos
 
 app = Flask(__name__)
 
@@ -220,6 +220,76 @@ def update_stats(id):
 def delete_stats(id):
    try:
       response = stats.delete_stats(id)
+      return jsonify(response), 200
+   except Exception as e:
+      return jsonify({'error': str(e)}), 500
+
+####################################################################################
+
+@app.route('/api/talentos', methods=['GET'])
+def get_all_talentos():
+  try:
+    result = talentos.all_talentos()
+  except Exception as e:
+    return jsonify({'error': str(e)}), 500
+
+  response = []
+  for row in result:
+    response.append({
+      'id': row[0],
+      'ataque': row[1],
+      'elemental': row[2],
+      'ultimate': row[3]
+    })
+
+  return jsonify(response), 200
+
+@app.route('/api/talentos/<int:id>', methods=['GET'])
+def get_by_talentos_id(id):
+    try:
+        result = talentos.talentos_by_id(id)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    if not result:
+        return jsonify({'error': 'No se encontró el arma'}), 404
+
+    row = result[0]
+    return jsonify({
+      'ataque': row[0],
+      'elemental': row[1],
+      'ultimate': row[2]
+    }), 200
+
+@app.route('/api/talentos', methods=['POST'])
+def create_talentos():
+  data = request.json
+  try:
+    response = talentos.add_talentos(
+       data['id'], data['ataque'], data['elemental'], data['ultimate']
+    )
+    return jsonify(response), 201
+  except Exception as e:
+     return jsonify({'error': str(e)}), 500
+
+@app.route('/api/talentos/<int:id>', methods=['PUT'])
+def update_talentos(id):
+   data = request.json
+   try:
+      response = talentos.update_talentos(
+         id,
+         ataque = data.get('ataque'),
+         elemental = data.get('elemental'),
+         ultimate = data.get('ultimate')
+      )
+      return jsonify(response), 200
+   except Exception as e:
+      return jsonify({'error': str(e)}), 500
+   
+@app.route('/api/talentos/<int:id>', methods=['DELETE'])
+def delete_talentos(id):
+   try:
+      response = talentos.delete_talentos(id)
       return jsonify(response), 200
    except Exception as e:
       return jsonify({'error': str(e)}), 500
