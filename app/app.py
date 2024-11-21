@@ -21,7 +21,6 @@ def personaje():
 
     return render_template("menu/personaje.html")
 
-
 @app.route("/nosotros")
 def about_us():
     integrantes = [
@@ -62,21 +61,21 @@ def team():
 def guide():
     return render_template("menu/guia.html")
 
-@app.route("/sumeru")
-def sumeru():
-    return render_template("naciones/sumeru/sumeru.html")
+@app.route("/mondstadt")
+def mondstadt():
+    return render_template("naciones/mondstadt/mondstadt.html")
 
 @app.route("/liyue")
 def liyue():
     return render_template("naciones/liyue/liyue.html")
 
-@app.route("/mondstadt")
-def mondstadt():
-    return render_template("naciones/mondstadt/mondstadt.html")
-
 @app.route("/inazuma")
 def inazuma():
     return render_template("naciones/inazuma/inazuma.html")
+
+@app.route("/sumeru")
+def sumeru():
+    return render_template("naciones/sumeru/sumeru.html")
 
 @app.route("/fontaine")
 def fontaine():
@@ -85,7 +84,6 @@ def fontaine():
 @app.route("/natlan")
 def natlan():
     return render_template("naciones/natlan/natlan.html")
-
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
