@@ -8,7 +8,14 @@ QUERY_TALENTOS_BY_ID = "SELECT ataque, elemental, ultimate FROM talentos WHERE I
 
 QUERY_ADD_TALENTOS = "INSERT INTO talentos (id, ataque, elemental, ultimate) VALUES (:id, :ataque, :elemental, :ultimate)"
 
-QUERY_UPDATE_TALENTOS = "UPDATE talentos SET ataque = COALESCE(:ataque, ataque), elemental = COALESCE(:elemental, elemental), ultimate = COALESCE(:ultimate, ultimate) WHERE ID = :id"
+QUERY_UPDATE_TALENTOS = """
+UPDATE talentos
+SET
+  ataque = COALESCE(:ataque, ataque),
+  elemental = COALESCE(:elemental, elemental),
+  ultimate = COALESCE(:ultimate, ultimate)
+WHERE ID = :id
+"""
 
 QUERY_DELETE_TALENTOS = "DELETE FROM talentos WHERE ID = :id"
 

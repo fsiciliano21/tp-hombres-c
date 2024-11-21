@@ -8,7 +8,13 @@ QUERY_ARMA_BY_ID = "SELECT nivel, refinamiento FROM arma WHERE ID = :id"
 
 QUERY_ADD_ARMA = "INSERT INTO arma (id, nivel, refinamiento) VALUES (:id, :nivel, :refinamiento)"
 
-QUERY_UPDATE_ARMA = "UPDATE arma SET nivel = COALESCE(:nivel, nivel), refinamiento = COALESCE(:refinamiento, refinamiento) WHERE ID = :id"
+QUERY_UPDATE_ARMA = """
+UPDATE arma
+SET
+  nivel = COALESCE(:nivel, nivel),
+  refinamiento = COALESCE(:refinamiento, refinamiento)
+WHERE ID = :id
+"""
 
 QUERY_DELETE_ARMA = "DELETE FROM arma WHERE ID = :id"
 

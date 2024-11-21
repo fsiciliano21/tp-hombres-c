@@ -8,7 +8,18 @@ QUERY_STATS_BY_ID = "SELECT vida, ataque, defensa, maestria, recarga_energia, pr
 
 QUERY_ADD_STATS = "INSERT INTO stats_principales (id, vida, ataque, defensa, maestria, recarga_energia, probabilidad_critico, danio_critico) VALUES (:id, :vida, :ataque, :defensa, :maestria, :recarga_energia, :probabilidad_critico, :danio_critico)"
 
-QUERY_UPDATE_STATS = "UPDATE stats_principales SET vida = COALESCE(:vida, vida), ataque = COALESCE(:ataque, ataque), defensa = COALESCE(:defensa, defensa), maestria = COALESCE(:maestria, maestria), recarga_energia = COALESCE(:recarga_energia, recarga_energia), probabilidad_critico = COALESCE(:probabilidad_critico, probabilidad_critico), danio_critico = COALESCE(:danio_critico, danio_critico) WHERE ID = :id"
+QUERY_UPDATE_STATS = """
+UPDATE stats_principales
+SET
+  vida = COALESCE(:vida, vida),
+  ataque = COALESCE(:ataque, ataque),
+  defensa = COALESCE(:defensa, defensa),
+  maestria = COALESCE(:maestria, maestria),
+  recarga_energia = COALESCE(:recarga_energia, recarga_energia),
+  probabilidad_critico = COALESCE(:probabilidad_critico, probabilidad_critico),
+  danio_critico = COALESCE(:danio_critico, danio_critico)
+WHERE ID = :id
+"""
 
 QUERY_DELETE_STATS = "DELETE FROM stats_principales WHERE ID = :id"
 

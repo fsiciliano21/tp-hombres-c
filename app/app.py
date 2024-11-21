@@ -28,7 +28,7 @@ def contact():
 @app.route("/nosotros")
 def about_us():
     integrantes = [
-        {"apellido":"Gonzales", "nombre":"Gabriel Leonel", "padron":"112607"},
+        {"apellido":"Gonzalez", "nombre":"Gabriel Leonel", "padron":"112607"},
         {"apellido":"Noriega Nuti", "nombre":"Sofia belen", "padron":"110502"},
         {"apellido":"Rojas Calizaya", "nombre":"Kevin Edgardo", "padron":"109948"},
         {"apellido":"Julian Gilio", "nombre":"Agustin Nahuel", "padron":"111876"},
