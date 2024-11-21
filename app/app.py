@@ -9,17 +9,21 @@ app: Flask = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route("/personaje")
-def personaje():
+@app.route("/mapa_interactivo")
+def mapa_interactivo():
+    return render_template("mapa_interactivo.html")
+
+@app.route("/personajes")
+def personajes():
   try:
-    response = requests.get(API_URL+'personaje')
+    response = requests.get(API_URL+'personajes')
     response.raise_for_status()
     personajes = response.json()
   except requests.exceptions.RequestException as e:
     print(f"Error fetching data: {e}")
     personajes = []
 
-    return render_template("menu/personaje.html")
+    return render_template("menu/personajes.html")
 
 @app.route("/nosotros")
 def about_us():
