@@ -252,7 +252,7 @@ def get_by_talentos_id(id):
         return jsonify({'error': str(e)}), 500
 
     if not result:
-        return jsonify({'error': 'No se encontró el arma'}), 404
+        return jsonify({'error': 'No se encontraron los talentos'}), 404
 
     row = result[0]
     return jsonify({
