@@ -89,6 +89,10 @@ def inazuma():
 def sumeru():
     return render_template("naciones/sumeru/sumeru.html")
 
+@app.route("/cuento")
+def cuento():
+    return render_template("naciones/sumeru/cuento.html")
+
 @app.route("/fontaine")
 def fontaine():
     return render_template("naciones/fontaine/fontaine.html")

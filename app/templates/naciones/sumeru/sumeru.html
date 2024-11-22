@@ -1,42 +1,28 @@
 {% extends "home.html" %}
 
-{% block titulo %} Sumeru - La Tierra de la Sabiduría y el Conocimiento {% endblock %}
+{% block titulo %} La Tierra de la Sabiduría y el Conocimiento {% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/naciones/sumeru_style/.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/naciones/sumeru/sumeru.css') }}">
 {% endblock %}
 
 {% block main %}
 
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/naciones/sumeru/fondo.png') }}">
-        <h1> Sumeru </h1>
-        <h2> La Tierra de la Sabiduría y el Conocimiento </h2>
+<div class="card">
+  <div class="marco_titulo">
+      <h1> Sumeru </h1>
+  </div>
 
-    </div>
+  <div id="sello_dendro">
+      <a href="/cuento">
+        <img src="{{url_for('static', filename='/images/naciones/sumeru/sello_dendro.png')}}" alt="sello_dendro">
+      </a>
+  </div>
+
+  <img src="{{ url_for('static', filename='images/naciones/sumeru/sumeru_fondo.png')}}" alt="fondo" style="width: 1234px;">
+</div>
 
 
 {% endblock %}
-    <!--
-<section class="bg" style="background-image: url('{{ url_for('static', filename='images/naciones/sumeru/fondo.png') }}');" alt="Sumero fondo">
-  <button>
-    <a href="{{ url_for('home')}}">volver</a>
-  </button>
-
-    <article class="text">
-      <p> Desde tiempos antiguos, Sumeru ha sido un lugar mágico, lleno de sabiduría, donde el conocimiento crece entre hermosos bosques y altas montañas. </p>
-        <img class="icono" src="{{ url_for('static', filename='images/naciones/sumeru/boton.png') }}" alt="Sumeru Boton">
-
-      <p> Al principio, Sumeru era un refugio de paz, donde sabios y estudiantes se reunían para compartir sus ideas y aprender juntos. Pero, con el tiempo, las ambiciones comenzaron a surgir. La Academia de Sumeru, un lugar especial para el conocimiento, se convirtió en un campo de discusiones, y algunos olvidaron que la verdadera sabiduría viene de ser amables y de conectar con los demás. </p>
-        <blockquote>
-            <p>He visto a mi pueblo sufrir, atrapado entre querer avanzar y cuidar sus raíces...</p>
-        </blockquote>
-        <p> He visto a mi pueblo sufrir, atrapado entre querer avanzar y cuidar sus raíces. Aprender no debe ser un viaje solitario; cada descubrimiento debe ayudar a todos. </p>
-
-      <p> En mi camino, he aprendido que la verdadera sabiduría no solo está en los libros, sino en el corazón de cada persona. Espero que, a pesar de los desafíos, Sumeru siga siendo un lugar donde la sabiduría florezca, un hogar para quienes buscan no solo conocer, sino también comprender y amar." </p>
-    </article>
-</section>
-
-    -->
 
 
