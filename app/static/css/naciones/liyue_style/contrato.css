@@ -1,7 +1,6 @@
 #contrato {
     margin: 0;
     position: absolute; /* Posiciona el texto sobre la imagen */
-    left: 50%; /* Centrado horizontal */
     transform: translateX(-50%); /* Ajusta el centrado horizontal */
     background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejor legibilidad */
     color: #ffffff;
@@ -12,6 +11,7 @@
     height: 521.8px;
     top: 24px;
     padding-top: 10px;
+    left: 667.5px;
 }
 
 #marco {
