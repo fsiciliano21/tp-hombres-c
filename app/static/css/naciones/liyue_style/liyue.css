@@ -1,0 +1,18 @@
+.card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+#sello_liyue {
+    position: absolute;
+    left: 495px;
+    top: 202px;
+    width: 9%;
+    height: 20%;
+}
+
+.marco_titulo {
+    left: 552.5px;
+    top: 39px;
+}

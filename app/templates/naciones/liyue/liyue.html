@@ -1,10 +1,27 @@
 {% extends "home.html" %}
 
-{% block titulo %} Sumeru - La Tierra de la Sabiduría y el Conocimiento {% endblock %}
+{% block titulo %} La nacion de los contratos {% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/naciones/liyue_style/liyue.css') }}">
+{% endblock %}
 
 {% block main %}
 
-<section class="bg" style="background-image: url('{{ url_for('static', filename='images/naciones/liyue/fondo_liyue.png') }}');" alt="Sumero fondo">
+<div class="card"> 
+  <img src="{{url_for('static', filename='images/naciones/liyue/liyue.jpg')}}" alt="fondo">
+  <div class="marco_titulo">
+    <h1> Liyue </h1>
+  </div>
+
+  <div id="sello_liyue">
+    <a href="/liyue">
+      <img src="{{url_for('static', filename='images/naciones/liyue/sello_geo.png')}}" alt="sello_geo">
+    </a>
+  </div>
+</div>
+
+<!-- 
   <button>
     <a href="{{ url_for('home')}}">volver</a>
   </button>
@@ -17,6 +34,6 @@
         
       {% include 'naciones/liyue/contrato.html'%}
     </article>
-</section>
+</section> -->
 
 {% endblock %}
