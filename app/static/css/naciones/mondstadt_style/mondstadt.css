@@ -16,3 +16,30 @@
     left: 554px;
     top: 275px;
 }
+
+.card #sonata {
+    margin: 0;
+    position: absolute; /* Posiciona el texto sobre la imagen */
+    transform: translateX(-50%); /* Ajusta el centrado horizontal */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejor legibilidad */
+    color: #ffffff;
+    padding: 10px 10px;
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: x-small;
+    width: 203.5px;
+    height: 471.8px;
+    top: 24px;
+    padding-top: 10px;
+    left: 880.5px;
+}
+
+.card #Venti {
+    position: absolute;
+    background-color: #ffffff00; /* Asegura que el fondo sea transparente */
+    left: 200px;
+}
+
+.card #marco {
+    position: absolute;
+    background-color: #ffffff00; /* Asegura que el fondo sea transparente */
+}
