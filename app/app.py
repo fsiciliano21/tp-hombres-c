@@ -73,6 +73,10 @@ def mondstadt():
 def liyue():
     return render_template("naciones/liyue/liyue.html")
 
+@app.route("/contrato")
+def contrato():
+    return render_template("naciones/liyue/contrato.html")
+
 @app.route("/inazuma")
 def inazuma():
     return render_template("naciones/inazuma/inazuma.html")
