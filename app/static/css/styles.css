@@ -1,6 +1,6 @@
 body, html {
 
-    font-family: Arial, sans-serif;
+    font-family: cursive;
     background-color: #4f453f;
     height: 100%;
     display: flex;
@@ -117,23 +117,23 @@ body, html {
 
 .about_us {
     text-align: center;
-  padding: 0;
-  position:relative;
+    padding: 0;
+    position:relative;
 }
 
 table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
+    font-family: cursive;
+    border-collapse: collapse;
 }
 
 td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+    background-color: #dddddd;
 }
 
 
