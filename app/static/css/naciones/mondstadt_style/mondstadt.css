@@ -4,24 +4,15 @@
     object-fit: cover; /* Recorta la imagen de manera uniforme */
 }
 
-.card h1, .card h2 {
-    margin: 0;
-    position: absolute; /* Posiciona el texto sobre la imagen */
-    left: 50%; /* Centrado horizontal */
-    transform: translateX(-50%); /* Ajusta el centrado horizontal */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejor legibilidad */
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 5px; /* Bordes redondeados */
-    text-align: center;
+.card .marco_titulo {
+    width: 126px;
+    left: 610.5px;
 }
 
-.card h1 {
-    font-size: 24px;
-    top: 7%; /* Ajusta la posición del h1 (ejemplo: más arriba) */
-}
-
-.card h2 {
-    font-size: 18px;
-    top: 19%; /* Ajusta la posición del h2 */
+.card #sello_anemo {
+    position: absolute;
+    width: 9%;
+    height: 20%;
+    left: 554px;
+    top: 275px;
 }

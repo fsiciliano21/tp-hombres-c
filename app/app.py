@@ -69,6 +69,10 @@ def guide():
 def mondstadt():
     return render_template("naciones/mondstadt/mondstadt.html")
 
+@app.route("/sonata")
+def sonata():
+    return render_template("naciones/mondstadt/sonata.html")
+
 @app.route("/liyue")
 def liyue():
     return render_template("naciones/liyue/liyue.html")

@@ -1,7 +1,7 @@
 
 {% extends "home.html" %}
 
-{% block titulo %} Mondstadt {% endblock %}
+{% block titulo %} La nacion de la LIBERTAD {% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/naciones/mondstadt_style/mondstadt.css') }}">
@@ -10,9 +10,17 @@
 {% block main %}
 
     <div class="card">
+        <div class="marco_titulo">
+            <h1> Mondstadt </h1>
+        </div>
+
+        <div id="sello_anemo">
+            <a href="/sonata">
+              <img src="{{url_for('static', filename='/images/naciones/mondstadt/sello_anemo.jpg')}}" alt="sello_anemo">
+            </a>
+        </div>
+
         <img src="{{ url_for('static', filename='images/naciones/mondstadt/mondstadt.jpeg') }}">
-        <h1> Mondstadt </h1>
-        <h2> La nacion de la LIBERTAD </h2>
     </div>
 
 

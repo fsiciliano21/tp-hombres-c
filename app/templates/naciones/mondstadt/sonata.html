@@ -1,3 +1,13 @@
+{% extends "home.html" %}
+
+{% block titulo %} Barbatos {% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/naciones/mondstadt_style/mondstadt.css') }}">
+{% endblock %}
+
+{% block main %}
+
 <div id="sonata">
     <p>En Monstadt, donde el viento danza,</p>
     <p>las risas flotan, la vida avanza.</p>
@@ -20,3 +30,5 @@
     <p>y en cada rincón, tu eco es mi laurel.</p>
     <br>
 </div>
+
+{% endblock %}
