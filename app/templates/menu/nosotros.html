@@ -1,25 +1,32 @@
 {% extends "base.html" %}
 
-{% block titulo %} Sobre nosostros {% endblock %}
+{% block titulo %} Sobre Nosotros {% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu/nosotros.css') }}">
+{% endblock %}
 
 {% block main %}
-
-<div class=about_us>
-  <h1> Integrantes del grupo </h1>
-  <table>
-    <tr>
-      <th> Nombre </th>
-      <th> Apellido </th>
-  	  <th> Padrón </th>
-    </tr>
-    {% for integrante in integrantes %}
+<div class="about_us">
+  <h1 class="about_us_titulo">Integrantes del Grupo</h1>
+  <table class="tabla_nombres">
+    <thead>
       <tr>
-        <td>  {{integrante.nombre}} </td>
-        <td>  {{integrante.apellido}} </td>
-        <td>  {{integrante.padron}} </td>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Padrón</th>
       </tr>
-    {% endfor %}
+    </thead>
+    <tbody>
+      {% for integrante in integrantes %}
+      <tr>
+        <td>{{ integrante.nombre }}</td>
+        <td>{{ integrante.apellido }}</td>
+        <td>{{ integrante.padron }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>
 </div>
-
 {% endblock %}
+
