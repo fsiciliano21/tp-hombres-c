@@ -83,7 +83,8 @@ def contrato():
 
 @app.route("/inazuma")
 def inazuma():
-    return render_template("naciones/inazuma/inazuma.html")
+    nombre_nacion = "Inazuma"
+    return render_template("naciones/inazuma/inazuma.html", nombre_nacion=nombre_nacion)
 
 @app.route("/sumeru")
 def sumeru():
@@ -95,11 +96,13 @@ def cuento():
 
 @app.route("/fontaine")
 def fontaine():
-    return render_template("naciones/fontaine/fontaine.html")
+    nombre_nacion = "Fontaine"
+    return render_template("naciones/fontaine/fontaine.html", nombre_nacion=nombre_nacion)
 
 @app.route("/natlan")
 def natlan():
-    return render_template("naciones/natlan/natlan.html")
+    nombre_nacion = "Natlan"
+    return render_template("naciones/natlan/natlan.html", nombre_nacion=nombre_nacion)
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
