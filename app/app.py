@@ -32,7 +32,7 @@ def about_us():
         {"apellido":"Noriega Nuti", "nombre":"Sofia belen", "padron":"110502"},
         {"apellido":"Rojas Calizaya", "nombre":"Kevin Edgardo", "padron":"109948"},
         {"apellido":"Julian Gilio", "nombre":"Agustin Nahuel", "padron":"111876"},
-        {"apellido":"Siciliano", "nombre":"Fransisco", "padron":"108157"},
+        {"apellido":"Siciliano", "nombre":"Franco", "padron":"108157"},
         {"apellido":"Lopez", "nombre":"Lazaro", "padron":"111312"},
         {"apellido":"Moyano", "nombre":"Benjamin", "padron":"111613"},
     ]
