@@ -13,10 +13,10 @@
 /* Estilos para el sello #sello_anemo */
 .card #sello_anemo {
     position: absolute;
-    width: 9%;
-    height: 20%;
-    left: 554px;
-    top: 275px;
+    width: 15%;
+    height: 30%;
+    left: 43%;
+    top: 52%;
     transition: transform 0.3s ease, filter 0.3s ease; /* Añadir transición para suavizar la animación */
 }
 
