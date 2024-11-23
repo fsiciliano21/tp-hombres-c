@@ -8,10 +8,10 @@
 /* Estilo para el sello #sello_liyue */
 #sello_liyue {
     position: absolute;
-    top: 215px;
-    left: 551px;
-    width: 9%;
-    height: 20%;
+    top: 45%;
+    left: 45%;
+    width: 15%;
+    height: 30%;
     transition: transform 0.3s ease, filter 0.3s ease; /* Añadir transición para suavizar la animación */
 }
 
