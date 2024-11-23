@@ -16,10 +16,10 @@
 /* Estilos para el sello */
 .card #sello_dendro {
     position: absolute;
-    width: 9%;
-    height: 20%;
-    left: 553px;
-    top: 416px;
+    width: 15%;
+    height: 30%;
+    right: 350px;
+    bottom: -70px;
     background-color: #ffffff00;
     transition: transform 0.3s ease, filter 0.3s ease; /* Añadir transición */
 }
