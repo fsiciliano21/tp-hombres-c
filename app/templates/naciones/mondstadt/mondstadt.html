@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Ejemplo</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/mondstadt_style/mondstadt.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mondstadt_style/mondstadt.css') }}">
 </head>
 
 <body>
@@ -18,10 +18,8 @@
         <!-- Sección de Fondo Verde con Texto -->
         <div class="right-side">
             <div class="title-box">
-                <p class="title-line"> La nacion de la LIBERTAD</tittle-lines></p>
-                </title-box>
+                <p class="title-line"> La nacion de la LIBERTAD</p>
             </div>
-
             <div class="contenido">
 
                 {% include 'naciones/mondstadt/sonata.html' %}
@@ -29,6 +27,7 @@
                 <a href="{{ url_for('personaje') }}" class="redirect-button">
                     <img src="{{ url_for('static', filename='images/ping-venti.jpg') }}" alt="Ir a Personaje">
                 </a>
+
             </div>
         </div>
     </div>

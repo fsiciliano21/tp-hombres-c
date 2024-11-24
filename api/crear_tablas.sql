@@ -39,3 +39,4 @@ CREATE TABLE talentos(
   FOREIGN KEY(ID) REFERENCES personaje(ID),
   PRIMARY KEY(ID)
 );
+

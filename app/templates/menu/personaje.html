@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block titulo %} Personajes {% endblock %}
+
+{% block main %}
+  <h1> Listado de personajes: </h1>
+  <table>
+    <tr>
+      <th> ID </th>
+      <th> Nombre </th>
+      <th> Edad </th>
+      <th> Región </th>
+      <th> Elemento </th>
+      <th> Acción </th>
+    </tr>
+    {% for personaje in personajes %}
+    <tr>
+      <td> {{ personaje.ID }} </td>
+      <td> {{ personaje.nombre }} </td>
+      <td> {{ personaje.edad }} </td>
+      <td> {{ personaje.region }} </td>
+      <td> {{ personaje.elemento }} </td>
+      <td>
+        <a href="{{ url_for('readmore', personaje_id=personaje.ID) }}">Ver stats</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

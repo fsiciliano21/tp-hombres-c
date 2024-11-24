@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, url_for
 import requests
 
-API_URL = 'http://localhost:5001/api/v1/'
+API_URL = 'http://127.0.0.1:5001/api/'
 
 app: Flask = Flask(__name__)
 
@@ -11,24 +11,24 @@ def home():
 
 @app.route("/personaje")
 def personaje():
-  try:
-    response = requests.get(API_URL+'personaje')
-    response.raise_for_status()
-    personajes = response.json()
-  except requests.exceptions.RequestException as e:
-    print(f"Error fetching data: {e}")
-    personajes = []
+    try:
+        response = requests.get(API_URL+'personajes')
+        response.raise_for_status()
+        personajes = response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data: {e}")
+        personajes = []
 
-    return render_template("personaje.html")
+    return render_template("menu/personaje.html", personajes=personajes)
 
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
 
-@app.route("/about_us")
+@app.route("/nosotros")
 def about_us():
     integrantes = [
-        {"apellido":"Gonzales", "nombre":"Gabriel Leonel", "padron":"112607"},
+        {"apellido":"Gonzalez", "nombre":"Gabriel Leonel", "padron":"112607"},
         {"apellido":"Noriega Nuti", "nombre":"Sofia belen", "padron":"110502"},
         {"apellido":"Rojas Calizaya", "nombre":"Kevin Edgardo", "padron":"109948"},
         {"apellido":"Julian Gilio", "nombre":"Agustin Nahuel", "padron":"111876"},
@@ -36,7 +36,19 @@ def about_us():
         {"apellido":"Lopez", "nombre":"Lazaro", "padron":"111312"},
         {"apellido":"Moyano", "nombre":"Benjamin", "padron":"111613"},
     ]
-    return render_template("about_us.html", integrantes=integrantes)
+    return render_template("menu/about_us.html", integrantes=integrantes)
+
+@app.route("/personaje/<int:personaje_id>")
+def readmore(personaje_id):
+    return render_template("menu/readmore.html")
+
+@app.route("/equipos")
+def team():
+    return render_template("menu/equipos.html")
+
+@app.route("/guia")
+def guide():
+    return render_template("menu/guia.html")
 
 @app.route("/sumeru")
 def sumeru():
