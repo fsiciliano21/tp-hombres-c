@@ -19,7 +19,7 @@
         <td>  {{personaje.nombre}} </td>
         <td>  {{personaje.region}} </td>
         <td>  {{personaje.elemento}} </td>
-        <a href="{{ url_for("readmore", personajes_id=personajes.ID) }}">Ver stats</a>
+        <a href="{{ url_for('readmore', personajes_id=personajes.ID) }}">Ver stats</a>
       </tr>
       {% endfor %}
   </table>
