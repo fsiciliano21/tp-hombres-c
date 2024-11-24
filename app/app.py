@@ -1,7 +1,13 @@
-from flask import Flask, request, render_template, url_for
+from flask import Flask, request, render_template, url_for, redirect
 import requests
 
-API_URL = 'http://localhost:5001/api/v1/'
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from api import personajes
+
+API_URL = 'http://127.0.0.1:5001/api/'
 
 app: Flask = Flask(__name__)
 
