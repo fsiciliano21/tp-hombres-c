@@ -19,17 +19,83 @@ def home():
 def mapa_interactivo():
     return render_template("mapa_interactivo.html")
 
-@app.route("/personajes")
-def personajes():
-  try:
-    response = requests.get(API_URL+'personajes')
-    response.raise_for_status()
-    personajes = response.json()
-  except requests.exceptions.RequestException as e:
-    print(f"Error fetching data: {e}")
-    personajes = []
+@app.route("/personajes", methods=["GET"])
+def personaje():
+    try:
+        response = personajes.all_personajes()
+        personajes_data = [
+            {
+                "id": row[0],
+                "nombre": row[1],
+                "edad": row[2],
+                "region": row[3],
+                "elemento": row[4],
+            }
+            for row in response
+        ]
+    except Exception as e:
+        print(f"Error fetching personajes: {e}")
+        personajes_data = []
+    return render_template("menu/personajes.html", personajes=personajes_data)
 
-    return render_template("menu/personajes.html")
+@app.route("/personajes/add", methods=["POST"])
+def add_personaje():
+    try:
+        nombre = request.form["nombre"]
+        edad = int(request.form["edad"])
+        region = request.form["region"]
+        elemento = request.form["elemento"]
+        response = personajes.add_personaje(nombre, edad, region, elemento)
+        if "error" in response:
+            return f"Error: {response['error']}", 400
+    except Exception as e:
+        return f"Error al agregar personaje: {e}", 500
+    return redirect(url_for("personajes"))
+
+@app.route("/personajes/delete/<int:personaje_id>", methods=["POST"])
+def delete_personaje(personaje_id):
+    try:
+        response = personajes.delete_personaje(personaje_id)
+        if "error" in response:
+            return f"Error: {response['error']}", 400
+    except Exception as e:
+        return f"Error al eliminar personaje: {e}", 500
+    return redirect(url_for("personajes"))
+
+@app.route("/personajes/edit/<int:personaje_id>", methods=["GET", "POST"])
+def edit_personaje(personaje_id):
+    if request.method == "POST":
+        try:
+            nombre = request.form.get("nombre")
+            edad = request.form.get("edad", type=int)
+            region = request.form.get("region")
+            elemento = request.form.get("elemento")
+
+            response = personajes.update_personaje(
+                personaje_id, nombre=nombre, edad=edad, region=region, elemento=elemento
+            )
+            if "error" in response:
+                return f"Error: {response['error']}", 400
+        except Exception as e:
+            return f"Error al actualizar personaje: {e}", 500
+
+        return redirect(url_for("personajes"))
+    else:
+        try:
+            personaje = personajes.personaje_by_id(personaje_id)[0]
+        except Exception as e:
+            return f"Error: {e}", 500
+
+        return render_template(
+            "menu/edit_personaje.html",
+            personaje={
+                "id": personaje_id,
+                "nombre": personaje[0],
+                "edad": personaje[1],
+                "region": personaje[2],
+                "elemento": personaje[3],
+            },
+        )
 
 @app.route("/nosotros")
 def about_us():
