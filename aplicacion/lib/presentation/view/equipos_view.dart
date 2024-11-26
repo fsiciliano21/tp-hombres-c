@@ -8,24 +8,20 @@ class EquiposView extends StatefulWidget {
 }
 
 class _EquiposViewState extends State<EquiposView> {
-  int count = 0;
 
-  @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('Equipos $count'),
-          FilledButton.tonal(
-              onPressed: () {
-                setState(() {
-                  count++;
-                });
-              },
-              child: const Icon(Icons.add)),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Equipos'),
+        backgroundColor: Colors.red,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
+          ),
         ],
       ),
+
     );
   }
 }

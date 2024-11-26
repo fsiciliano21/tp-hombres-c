@@ -8,24 +8,21 @@ class PersonajesView extends StatefulWidget {
 }
 
 class _PersonajesViewState extends State<PersonajesView> {
-  int count = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('Personajes: $count'),
-          FilledButton.tonal(
-              onPressed: () {
-                setState(() {
-                  count++;
-                });
-              },
-              child: const Icon(Icons.add)),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Personajes'),
+        backgroundColor: Colors.red,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
+          ),
         ],
       ),
+
     );
   }
 }

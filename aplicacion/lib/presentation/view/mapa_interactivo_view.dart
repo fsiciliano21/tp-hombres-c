@@ -8,23 +8,55 @@ class MapaInteractivoView extends StatefulWidget {
 }
 
 class _MapaInteractivoViewState extends State<MapaInteractivoView> {
-  int count = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('Mapas $count'),
-          FilledButton.tonal(
-              onPressed: () {
-                setState(() {
-                  count++;
-                });
-              },
-              child: const Icon(Icons.add)),
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Mapa Interactivo'),
+        backgroundColor: Colors.red,     
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 78,
+              width: 400,
+              child: Placeholder(),
+            ),
+            SizedBox(
+              height: 78,
+              width: 400,
+              child: Placeholder(),
+            ),
+            SizedBox(
+              height: 78,
+              width: 400,
+              child: Placeholder(),
+            ),
+            SizedBox(
+              height: 78,
+              width: 400,
+              child: Placeholder(),
+            ),
+            SizedBox(
+              height: 78,
+              width: 400,
+              child: Placeholder(),
+            ),
+            SizedBox(
+              height: 78,
+              width: 400,
+              child: Placeholder(),
+            ),
+            SizedBox(
+              height: 78,
+              width: 400,
+              child: Placeholder(),
+            ),
+
+          ],
+        ),
       ),
     );
   }

@@ -8,6 +8,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Genshin Impact'),
+        backgroundColor: const Color.fromARGB(255, 201, 116, 36),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -24,7 +25,7 @@ class HomeView extends StatelessWidget {
               'Genshin Impact (chino: 原神, Yuán Shén; japonés: 原神, Genshin), es un juego de rol de acción gratuito desarrollado por miHoYo Co., Ltd. Fuera de China, el editor es la filial de miHoYo, Cognosphere Pte., Ltd. d/b/a HoYoverse.\n\n'
               'El juego presenta un entorno de mundo abierto de fantasía y un sistema de combate basado en acción que utiliza magia elemental, cambio de personaje y sistema de monetización de gacha para que los jugadores obtengan nuevos personajes, armas y otros recursos. El juego solo se puede jugar con una conexión a Internet y cuenta con un modo multijugador limitado que permite hasta cuatro jugadores en un mundo.\n\n'
               'El juego se lanzó en todo el mundo el 28 de septiembre de 2020 para PC, iOS / Android y PlayStation 4. El 11 de noviembre de 2020 se lanzó una versión de PlayStation 5, que cuenta con soporte de guardado cruzado con PlayStation 4. Se lanzó una segunda versión para PC en Epic Games Store el 9 de junio de 2021. El juego también se lanzará en Nintendo Switch.',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, color: Colors.white),
               textAlign: TextAlign.justify,
             ),
           ],
