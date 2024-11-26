@@ -18,7 +18,10 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: 150,
               width: double.infinity,
-              child: Placeholder(),
+              child: Image.asset(
+                'assets/images/mapas/mondstadt.jpeg',
+                fit: BoxFit.cover,
+              )
             ),
             const SizedBox(height: 16), // Espaciado entre el Placeholder y el texto
             const Text(

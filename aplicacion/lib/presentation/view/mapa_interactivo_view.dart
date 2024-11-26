@@ -20,41 +20,40 @@ class _MapaInteractivoViewState extends State<MapaInteractivoView> {
         child: Column(
           children: [
             SizedBox(
-              height: 78,
+              height: 90,
               width: 400,
               child: Placeholder(),
-            ),
+              ),
             SizedBox(
-              height: 78,
+              height: 90,
               width: 400,
               child: Placeholder(),
-            ),
+              ),
             SizedBox(
-              height: 78,
+              height: 90,
               width: 400,
               child: Placeholder(),
-            ),
+              ),
+            
             SizedBox(
-              height: 78,
+              height: 90,
               width: 400,
               child: Placeholder(),
-            ),
+              ),
+            
             SizedBox(
-              height: 78,
+              height: 90,
               width: 400,
               child: Placeholder(),
-            ),
+              ),
+            
             SizedBox(
-              height: 78,
+              height: 90,
               width: 400,
               child: Placeholder(),
-            ),
-            SizedBox(
-              height: 78,
-              width: 400,
-              child: Placeholder(),
-            ),
-
+              ),
+            
+            
           ],
         ),
       ),

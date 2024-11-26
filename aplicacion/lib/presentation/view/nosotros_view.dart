@@ -8,7 +8,7 @@ class NosotrosView extends StatefulWidget {
 }
 
 class _NosotrosViewState extends State<NosotrosView> {
-  int count = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +16,7 @@ class _NosotrosViewState extends State<NosotrosView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Nosotros $count'),
-          FilledButton.tonal(
-              onPressed: () {
-                setState(() {
-                  count++;
-                });
-              },
-              child: const Icon(Icons.add)),
+
         ],
       ),
     );
