@@ -3,6 +3,9 @@
 {% block titulo %} Editar Personaje {% endblock %}
 
 {% block main %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
 <h1>Editar personaje</h1>
 <form method="POST">
   <label for="nombre">Nombre:</label>
