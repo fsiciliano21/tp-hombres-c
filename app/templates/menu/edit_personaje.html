@@ -2,6 +2,11 @@
 
 {% block titulo %} Editar Personaje {% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/menu/edit_personaje.css') }}">
+{% endblock %}
+
+
 {% block main %}
 <h1>Editar personaje</h1>
 <form method="POST">
