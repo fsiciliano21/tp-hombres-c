@@ -22,37 +22,56 @@ class _MapaInteractivoViewState extends State<MapaInteractivoView> {
             SizedBox(
               height: 90,
               width: 400,
-              child: Placeholder(),
+              child: Image.asset(
+                'assets/images/mapas/mondstadt.jpeg',
+                fit: BoxFit.cover,
               ),
+            ),
+
             SizedBox(
               height: 90,
               width: 400,
-              child: Placeholder(),
+              child: Image(image: 
+                AssetImage('assets/images/mapas/liyue.jpg'),
+                fit: BoxFit.cover,
               ),
+            ),
+
             SizedBox(
               height: 90,
               width: 400,
-              child: Placeholder(),
+              child: Image.asset(
+                'assets/images/mapas/inazuma.jpg',
+                fit: BoxFit.cover,
               ),
+            ),
             
             SizedBox(
               height: 90,
               width: 400,
-              child: Placeholder(),
+              child: Image.asset(
+                'assets/images/mapas/sumeru.jpeg',
+                fit: BoxFit.cover,
               ),
+            ),
             
             SizedBox(
               height: 90,
               width: 400,
-              child: Placeholder(),
+              child: Image.asset(
+                'assets/images/mapas/fonteine.jpg',
+                fit: BoxFit.cover,
               ),
-            
+            ),
+
             SizedBox(
               height: 90,
               width: 400,
-              child: Placeholder(),
+              child: Image.asset(
+                'assets/images/mapas/natlan.png',
+                fit: BoxFit.cover,
               ),
-            
+            ),
             
           ],
         ),

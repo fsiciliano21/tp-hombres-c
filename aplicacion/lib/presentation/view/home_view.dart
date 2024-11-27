@@ -6,10 +6,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Genshin Impact'),
-        backgroundColor: const Color(0xFFEDD9B7),
-      ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -19,7 +16,7 @@ class HomeView extends StatelessWidget {
               height: 150,
               width: double.infinity,
               child: Image.asset(
-                'assets/images/mapas/mondstadt.jpeg',
+                'assets/images/mapas/genshin.png',
                 fit: BoxFit.cover,
               )
             ),
