@@ -34,7 +34,7 @@ class _MapaInteractivoViewState extends State<MapaInteractivoView> {
             {'image': 'assets/images/mapas/liyue.jpg', 'screen': Liyue(), 'name': 'Liyue'},
             {'image': 'assets/images/mapas/inazuma.jpg', 'screen': Inazuma(), 'name': 'Inazuma'},
             {'image': 'assets/images/mapas/sumeru.jpeg', 'screen': Sumeru(), 'name': 'Sumeru'},
-            {'image': 'assets/images/mapas/fonteine.jpg', 'screen': Fontaine(), 'name': 'Fontaine'},
+            {'image': 'assets/images/mapas/fontaine.jpg', 'screen': Fontaine(), 'name': 'Fontaine'},
             {'image': 'assets/images/mapas/natlan.png', 'screen': Natlan(), 'name': 'Natlan'},
           ];
 

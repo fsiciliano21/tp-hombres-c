@@ -20,7 +20,7 @@ class _FontaineState extends State<Fontaine> {
           // Imagen de fondo
           Positioned.fill(
             child: Image.asset(
-              'assets/images/mapas/fontaine.jpg', // Ruta de la imagen de fondo
+              'assets/images/mapas/fondo_fontaine.jpg', // Ruta de la imagen de fondo
               fit: BoxFit.cover, // Ajuste de la imagen
             ),
           ),
