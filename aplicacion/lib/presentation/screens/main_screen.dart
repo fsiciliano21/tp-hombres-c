@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
       const PersonajesView(),
       const EquiposView(),
       const MapaInteractivoView(),
-      const Sumeru()
+      const Liyue()
     ];
 
     return Scaffold(
