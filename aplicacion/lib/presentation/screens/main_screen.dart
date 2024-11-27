@@ -27,6 +27,14 @@ class _MainScreenState extends State<MainScreen> {
       const NosotrosView()
     ];
 
+    final bottomNavItems = [
+      _buildBottomNavItem('home.png', colors),
+      _buildBottomNavItem('personajes.png', colors),
+      _buildBottomNavItem('equipos.png', colors),
+      _buildBottomNavItem('mapa.png', colors),
+      _buildBottomNavItem('nosotros.png', colors),
+    ];
+
     return Scaffold(
       body: IndexedStack(
         index: selectedIndex,
@@ -41,59 +49,21 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         elevation: 2,
-        items: [
-          BottomNavigationBarItem(
-            icon: ImageIcon(
-              AssetImage('assets/images/mapas/home.png'),
-            ),
-            activeIcon: ImageIcon(
-              AssetImage('assets/images/mapas/home.png'),
-            ),
-            label: '',
-            backgroundColor: colors.secondary,
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(
-              AssetImage('assets/images/mapas/personajes.png'),
-            ),
-            activeIcon: ImageIcon(
-              AssetImage('assets/images/mapas/personajes.png'),
-            ),
-            label: '',
-            backgroundColor: colors.secondary,
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(
-              AssetImage('assets/images/mapas/equipos.png'),
-            ),
-            activeIcon: ImageIcon(
-              AssetImage('assets/images/mapas/equipos.png'),
-            ),
-            label: '',
-            backgroundColor: colors.secondary,
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(
-              AssetImage('assets/images/mapas/mapa.png'),
-            ),
-            activeIcon: ImageIcon(
-              AssetImage('assets/images/mapas/mapa.png'),
-            ),
-            label: '',
-            backgroundColor: colors.secondary,
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(
-              AssetImage('assets/images/mapas/nosotros.png'),
-            ),
-            activeIcon: ImageIcon(
-              AssetImage('assets/images/mapas/nosotros.png'),
-            ),
-            label: '',
-            backgroundColor: colors.secondary,
-          ),
-        ],
+        items: bottomNavItems,
       ),
+    );
+  }
+
+  BottomNavigationBarItem _buildBottomNavItem(String assetName, ColorScheme colors) {
+    return BottomNavigationBarItem(
+      icon: ImageIcon(
+        AssetImage('assets/images/mapas/$assetName'),
+      ),
+      activeIcon: ImageIcon(
+        AssetImage('assets/images/mapas/$assetName'),
+      ),
+      label: '',
+      backgroundColor: colors.secondary,
     );
   }
 }
