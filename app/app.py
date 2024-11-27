@@ -19,7 +19,7 @@ def home():
 def mapa_interactivo():
     return render_template("mapa_interactivo.html")
 
-@app.route("/personajes", methods=["GET"])
+@app.route("/personaje", methods=["GET"])
 def personaje():
     try:
         response = personajes.all_personajes()
@@ -38,7 +38,7 @@ def personaje():
         personajes_data = []
     return render_template("menu/personajes.html", personajes=personajes_data)
 
-@app.route("/personajes/add", methods=["POST"])
+@app.route("/personaje/add", methods=["POST"])
 def add_personaje():
     try:
         nombre = request.form["nombre"]
@@ -50,9 +50,9 @@ def add_personaje():
             return f"Error: {response['error']}", 400
     except Exception as e:
         return f"Error al agregar personaje: {e}", 500
-    return redirect(url_for("personajes"))
+    return redirect(url_for("personaje"))
 
-@app.route("/personajes/delete/<int:personaje_id>", methods=["POST"])
+@app.route("/personaje/delete/<int:personaje_id>", methods=["POST"])
 def delete_personaje(personaje_id):
     try:
         response = personajes.delete_personaje(personaje_id)
@@ -60,9 +60,9 @@ def delete_personaje(personaje_id):
             return f"Error: {response['error']}", 400
     except Exception as e:
         return f"Error al eliminar personaje: {e}", 500
-    return redirect(url_for("personajes"))
+    return redirect(url_for("personaje"))
 
-@app.route("/personajes/edit/<int:personaje_id>", methods=["GET", "POST"])
+@app.route("/personaje/edit/<int:personaje_id>", methods=["GET", "POST"])
 def edit_personaje(personaje_id):
     if request.method == "POST":
         try:
@@ -79,7 +79,7 @@ def edit_personaje(personaje_id):
         except Exception as e:
             return f"Error al actualizar personaje: {e}", 500
 
-        return redirect(url_for("personajes"))
+        return redirect(url_for("personaje"))
     else:
         try:
             personaje = personajes.personaje_by_id(personaje_id)[0]
