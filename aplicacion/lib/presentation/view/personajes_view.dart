@@ -14,7 +14,7 @@ class _PersonajesViewState extends State<PersonajesView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Personajes'),
-        backgroundColor: Colors.red,
+        backgroundColor: const Color(0xFFEDD9B7),
         actions: [
           IconButton(
             onPressed: () {},

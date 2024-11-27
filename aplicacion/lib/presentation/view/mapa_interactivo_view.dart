@@ -14,7 +14,7 @@ class _MapaInteractivoViewState extends State<MapaInteractivoView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mapa Interactivo'),
-        backgroundColor: Colors.red,     
+        backgroundColor: const Color(0xFFEDD9B7),   
       ),
       body: Center(
         child: Column(

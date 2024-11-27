@@ -14,7 +14,7 @@ class _SumeruState extends State<Sumeru> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sumeru'),
-        backgroundColor: Colors.red,
+        backgroundColor:const Color(0xFFEDD9B7),
       ),
 
     );

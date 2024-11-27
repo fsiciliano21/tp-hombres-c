@@ -14,7 +14,7 @@ class _MondstadtState extends State<Mondstadt> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mondstadt'),
-        backgroundColor: Colors.red,
+        backgroundColor: const Color(0xFFEDD9B7),
       ),
       body: Center(
         child: Column(

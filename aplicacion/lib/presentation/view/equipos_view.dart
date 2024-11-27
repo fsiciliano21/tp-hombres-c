@@ -13,7 +13,7 @@ class _EquiposViewState extends State<EquiposView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Equipos'),
-        backgroundColor: Colors.red,
+        backgroundColor: const Color(0xFFEDD9B7),
         actions: [
           IconButton(
             onPressed: () {},

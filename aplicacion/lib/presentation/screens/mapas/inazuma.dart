@@ -14,7 +14,7 @@ class _InazumaState extends State<Inazuma> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Inazuma'),
-        backgroundColor: Colors.red,
+        backgroundColor: const Color(0xFFEDD9B7),
       ),
 
     );

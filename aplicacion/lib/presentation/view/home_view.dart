@@ -8,7 +8,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Genshin Impact'),
-        backgroundColor: const Color.fromARGB(255, 201, 116, 36),
+        backgroundColor: const Color(0xFFEDD9B7),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),

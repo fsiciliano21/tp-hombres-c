@@ -14,7 +14,7 @@ class _NatlanState extends State<Natlan> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Natlan'),
-        backgroundColor: Colors.red,
+        backgroundColor: const Color(0xFFEDD9B7),
       ),
 
     );

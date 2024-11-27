@@ -14,7 +14,7 @@ class _FontaineState extends State<Fontaine> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Fontaine'),
-        backgroundColor: Colors.red,
+        backgroundColor: const Color(0xFFEDD9B7),
       ),
 
     );
