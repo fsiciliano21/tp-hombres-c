@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:genshin/presentation/screens/mapas/liyue.dart';
 import 'package:genshin/presentation/screens/mapas/mondstadt.dart';
+import 'package:genshin/presentation/screens/mapas/sumeru.dart';
 import 'package:genshin/presentation/view/home_view.dart';
 import 'package:genshin/presentation/view/mapa_interactivo_view.dart';
 import 'package:genshin/presentation/view/personajes_view.dart';
@@ -26,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
       const PersonajesView(),
       const EquiposView(),
       const MapaInteractivoView(),
-      const Liyue()
+      const Sumeru()
     ];
 
     return Scaffold(
