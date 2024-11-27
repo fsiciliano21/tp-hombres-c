@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genshin/presentation/view/home_view.dart';
-import 'package:genshin/presentation/view/mapa_interactivo_view.dart';
+import 'package:genshin/presentation/view/mapa_view.dart';
 import 'package:genshin/presentation/view/personajes_view.dart';
 import 'package:genshin/presentation/view/equipos_view.dart';
 import 'package:genshin/presentation/view/nosotros_view.dart';
