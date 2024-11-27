@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:genshin/presentation/screens/mapas/liyue.dart';
-import 'package:genshin/presentation/screens/mapas/mondstadt.dart';
-import 'package:genshin/presentation/screens/mapas/sumeru.dart';
 import 'package:genshin/presentation/view/home_view.dart';
 import 'package:genshin/presentation/view/mapa_interactivo_view.dart';
 import 'package:genshin/presentation/view/personajes_view.dart';
@@ -27,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
       const PersonajesView(),
       const EquiposView(),
       const MapaInteractivoView(),
-      const Liyue()
+      const NosotrosView()
     ];
 
     return Scaffold(
@@ -44,35 +41,54 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         elevation: 2,
-
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.two_wheeler),
-            activeIcon: const Icon(Icons.motorcycle),
+            icon: ImageIcon(
+              AssetImage('assets/images/mapas/home.png'),
+            ),
+            activeIcon: ImageIcon(
+              AssetImage('assets/images/mapas/home.png'),
+            ),
             label: '',
             backgroundColor: colors.secondary,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.person_3_outlined),
-            activeIcon: const Icon(Icons.person_3),
+            icon: ImageIcon(
+              AssetImage('assets/images/mapas/personajes.png'),
+            ),
+            activeIcon: ImageIcon(
+              AssetImage('assets/images/mapas/personajes.png'),
+            ),
             label: '',
             backgroundColor: colors.secondary,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.person_3_outlined),
-            activeIcon: const Icon(Icons.person_add_alt_1),
+            icon: ImageIcon(
+              AssetImage('assets/images/mapas/equipos.png'),
+            ),
+            activeIcon: ImageIcon(
+              AssetImage('assets/images/mapas/equipos.png'),
+            ),
             label: '',
             backgroundColor: colors.secondary,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.person_3_outlined),
-            activeIcon: const Icon(Icons.person_3),
+            icon: ImageIcon(
+              AssetImage('assets/images/mapas/mapa.png'),
+            ),
+            activeIcon: ImageIcon(
+              AssetImage('assets/images/mapas/mapa.png'),
+            ),
             label: '',
             backgroundColor: colors.secondary,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.person_3_outlined),
-            activeIcon: const Icon(Icons.person_3),
+            icon: ImageIcon(
+              AssetImage('assets/images/mapas/nosotros.png'),
+            ),
+            activeIcon: ImageIcon(
+              AssetImage('assets/images/mapas/nosotros.png'),
+            ),
             label: '',
             backgroundColor: colors.secondary,
           ),
