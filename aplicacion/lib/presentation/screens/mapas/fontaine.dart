@@ -40,7 +40,8 @@ class _FontaineState extends State<Fontaine> {
                 padding: const EdgeInsets.all(20.0), // Espacio interno del contenedor
                 child: const Text(
                   '¡Próximamente!\n\n'
-                  'Estamos trabajando en este contenido.',
+                  'Estamos trabajando en este contenido.'
+                  '\n\n¡Gracias por tu paciencia!',
                   style: TextStyle(
                     fontSize: 18,
                     fontFamily: 'Cursive', // Tipografía cursiva
