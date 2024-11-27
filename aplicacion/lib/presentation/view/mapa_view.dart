@@ -22,107 +22,35 @@ class _MapaInteractivoViewState extends State<MapaInteractivoView> {
         title: const Text('Mapa Interactivo'),
         backgroundColor: const Color(0xFFEDD9B7),   
       ),
-      body: Center(
-        child: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Mondstadt()),
-                );
-              },
-              child: SizedBox(
-                height: 90,
-                width: 400,
-                child: Image.asset(
-                  'assets/images/mapas/mondstadt.jpeg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Liyue()),
-                );
-              },
-              child: SizedBox(
-                height: 90,
-                width: 400,
-                child: Image.asset(
-                  'assets/images/mapas/liyue.jpg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Inazuma()),
-                );
-              },
-              child: SizedBox(
-                height: 90,
-                width: 400,
-                child: Image.asset(
-                  'assets/images/mapas/inazuma.jpg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Sumeru()),
-                );
-              },
-              child: SizedBox(
-                height: 90,
-                width: 400,
-                child: Image.asset(
-                  'assets/images/mapas/sumeru.jpeg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Fontaine()),
-                );
-              },
-              child: SizedBox(
-                height: 90,
-                width: 400,
-                child: Image.asset(
-                  'assets/images/mapas/fonteine.jpg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Natlan()),
-                );
-              },
-              child: SizedBox(
-                height: 90,
-                width: 400,
-                child: Image.asset(
-                  'assets/images/mapas/natlan.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ],
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1, // Una columna
+          childAspectRatio: 16 / 9, // Relación de aspecto para rectángulos
         ),
+        itemCount: 6,
+        itemBuilder: (context, index) {
+          final List<Map<String, dynamic>> mapas = [
+            {'image': 'assets/images/mapas/mondstadt.jpeg', 'screen': Mondstadt()},
+            {'image': 'assets/images/mapas/liyue.jpg', 'screen': Liyue()},
+            {'image': 'assets/images/mapas/inazuma.jpg', 'screen': Inazuma()},
+            {'image': 'assets/images/mapas/sumeru.jpeg', 'screen': Sumeru()},
+            {'image': 'assets/images/mapas/fonteine.jpg', 'screen': Fontaine()},
+            {'image': 'assets/images/mapas/natlan.png', 'screen': Natlan()},
+          ];
+
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => mapas[index]['screen']),
+              );
+            },
+            child: Image.asset(
+              mapas[index]['image'],
+              fit: BoxFit.cover,
+            ),
+          );
+        },
       ),
     );
   }
