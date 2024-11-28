@@ -24,7 +24,7 @@ QUERY_DELETE_EQUIPO = "DELETE FROM equipos WHERE ID = :id"
 
 
 
-engine = create_engine("mysql+mysqlconnector://root:Ajklajklwsdecbv0@localhost:3306/genshin")#cambiar "contraseña" por la contraseña del root
+engine = create_engine("mysql+mysqlconnector://root:contraseña@localhost:3306/genshin")#cambiar "contraseña" por la contraseña del root
 
 def run_query(query, parameters=None):
   with engine.connect() as conn:
