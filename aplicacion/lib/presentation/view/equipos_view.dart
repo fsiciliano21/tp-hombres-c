@@ -8,20 +8,40 @@ class EquiposView extends StatefulWidget {
 }
 
 class _EquiposViewState extends State<EquiposView> {
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Equipos'),
         backgroundColor: const Color(0xFFEDD9B7),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
-          ),
-        ],
       ),
-
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color(0xFFEDD9B7), // Color de fondo del contenedor
+              borderRadius: BorderRadius.circular(10), // Bordes redondeados
+              border: Border.all(
+                color: Colors.black, // Color del borde
+                width: 2, // Grosor del borde
+              ),
+            ),
+            padding: const EdgeInsets.all(20.0), // Espacio interno del contenedor
+            child: const Text(
+              '¡Próximamente!\n\n'
+              'Estamos trabajando en este contenido.'
+              '\n\n¡Gracias por tu paciencia!',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Cursive', // Tipografía cursiva
+                color: Colors.black, // Color de la letra
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

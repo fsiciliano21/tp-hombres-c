@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AddPersonajes extends StatefulWidget {
   final Map<String, String>? personaje;
@@ -40,9 +41,14 @@ class _AddPersonajesState extends State<AddPersonajes> {
           key: _formKey,
           child: ListView(
             children: [
+              
+              // nombre
               TextFormField(
                 controller: _nombreController,
-                decoration: const InputDecoration(labelText: 'Nombre'),
+                decoration: const InputDecoration(
+                  labelText: 'Nombre',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
                 style: const TextStyle(color: Colors.white),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -51,11 +57,19 @@ class _AddPersonajesState extends State<AddPersonajes> {
                   return null;
                 },
               ),
+
+              // edad
               TextFormField(
                 controller: _edadController,
-                decoration: const InputDecoration(labelText: 'Edad'),
+                decoration: const InputDecoration(
+                  labelText: 'Edad',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
                 keyboardType: TextInputType.number,
                 style: const TextStyle(color: Colors.white),
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingrese una edad';
@@ -63,9 +77,13 @@ class _AddPersonajesState extends State<AddPersonajes> {
                   return null;
                 },
               ),
+              // nacion
               DropdownButtonFormField<String>(
                 value: _nacion,
-                decoration: const InputDecoration(labelText: 'Nación'),
+                decoration: const InputDecoration(
+                  labelText: 'Nación',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
                 items: ['Mondstadt', 'Liyue', 'Inazuma', 'Sumeru', 'Fontaine', 'Natlan']
                     .map((nacion) => DropdownMenuItem(
                           value: nacion,
@@ -78,10 +96,16 @@ class _AddPersonajesState extends State<AddPersonajes> {
                   });
                 },
                 style: const TextStyle(color: Colors.white),
+                dropdownColor: Colors.black,
               ),
+
+              // elemento
               DropdownButtonFormField<String>(
                 value: _elemento,
-                decoration: const InputDecoration(labelText: 'Elemento'),
+                decoration: const InputDecoration(
+                  labelText: 'Elemento',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
                 items: ['Ameno', 'Cryo', 'Pyro', 'Electro', 'Dendro', 'Hydro']
                     .map((elemento) => DropdownMenuItem(
                           value: elemento,
@@ -94,6 +118,7 @@ class _AddPersonajesState extends State<AddPersonajes> {
                   });
                 },
                 style: const TextStyle(color: Colors.white),
+                dropdownColor: Colors.black,
               ),
               const SizedBox(height: 20),
               ElevatedButton(
