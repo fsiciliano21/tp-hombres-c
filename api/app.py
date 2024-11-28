@@ -1,13 +1,13 @@
 from flask import Flask, jsonify, request
 
-import personajes, armas, stats, talentos
+import personajes, equipos, armas, stats, talentos
 
 app = Flask(__name__)
 
 @app.route('/api/personajes', methods=['GET'])
 def get_all_personajes():
   try:
-    result = personaje.all_personajes()
+    result = personajes.all_personajes()
   except Exception as e:
     return jsonify({'error': str(e)}), 500
 
@@ -18,7 +18,8 @@ def get_all_personajes():
       'nombre': row[1],
       'edad': row[2],
       'region': row[3],
-      'elemento': row[4]
+      'elemento': row[4],
+      'ataque' : row[5]
     })
 
   return jsonify(response), 200
@@ -26,7 +27,7 @@ def get_all_personajes():
 @app.route('/api/personajes/<int:id>', methods=['GET'])
 def get_by_id(id):
     try:
-        result = personaje.personaje_by_id(id)
+        result = personajes.personaje_by_id(id)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -38,7 +39,8 @@ def get_by_id(id):
       'nombre': row[0],
       'edad': row[1],
       'region': row[2],
-      'elemento': row[3]
+      'elemento': row[3],
+      'ataque' : row[4]
     }), 200
 
 @app.route('/api/personajes', methods=['POST'])
@@ -61,7 +63,8 @@ def update_personaje(id):
          nombre = data.get('nombre'),
          edad = data.get('edad'),
          region = data.get('region'),
-         elemento = data.get('elemento')
+         elemento = data.get('elemento'),
+         ataque = data.get('ataque')
       )
       return jsonify(response), 200
    except Exception as e:
@@ -74,6 +77,86 @@ def delete_personaje(id):
       return jsonify(response), 200
    except Exception as e:
       return jsonify({'error': str(e)}), 500
+   
+##############################################################################
+# EQUIPOS
+@app.route('/api/equipos', methods=['GET'])
+def get_all_equipos():
+  try:
+    result = equipos.all_equipos()
+  except Exception as e:
+    return jsonify({'error': str(e)}), 500
+
+  response = []
+  for row in result:
+    response.append({
+      'ID': id[0],
+      'nombre_equipo': row[1],
+      'ID_integrante_1': row[2],
+      'ID_integrante_2': row[3],
+      'ID_integrante_3': row[4],
+      'ID_integrante_4' : row[5],
+      'promedio_ataque' : row[6]
+    })
+
+  return jsonify(response), 200
+
+@app.route('/api/equipos/<int:id>', methods=['GET'])
+def get_equipo_by_id(id):
+    try:
+        result = equipos.equipo_by_id(id)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    if not result:
+        return jsonify({'error': 'No se encontró el equipo'}), 404
+
+    result = result[0]
+    return jsonify({
+      'nombre_equipo': row[0],
+      'ID_integrante_1': row[1],
+      'ID_integrante_2': row[2],
+      'ID_integrante_3': row[3],
+      'ID_integrante_4' : row[4],
+      'promedio_ataque' : row[5]
+    }), 200
+
+@app.route('/api/equipos', methods=['POST'])
+def create_equipo():
+  data = request.json
+  try:
+    response = equipos.add_equipo(
+       data['nombre_equipo'], data['ID_integrante_1'], data['ID_integrante_2'], data['ID_integrante_3'], data['ID_integrante_4'], data['promedio_ataque']
+    )
+    return jsonify(response), 201
+  except Exception as e:
+     return jsonify({'error': str(e)}), 500
+
+@app.route('/api/equipos/<int:id>', methods=['PUT'])
+def update_equipo(id):
+   data = request.json
+   try:
+      response = equipos.update_equipo(
+         id,
+         nombre_equipo = data.get('nombre_equipo'),
+         ID_integrante_1 = data.get('ID_integrante_1'),
+         ID_integrante_2 = data.get('ID_integrante_2'),
+         ID_integrante_3 = data.get('ID_integrante_3'),
+         ID_integrante_4 = data.get('ID_integrante_4'),
+         promedio_ataque = data.get('promedio_ataque')
+      )
+      return jsonify(response), 200
+   except Exception as e:
+      return jsonify({'error': str(e)}), 500
+   
+@app.route('/api/equipos/<int:id>', methods=['DELETE'])
+def delete_equipo(id):
+   try:
+      response = equipos.delete_equipo(id)
+      return jsonify(response), 200
+   except Exception as e:
+      return jsonify({'error': str(e)}), 500
+
 
 ####################################################################################3
 

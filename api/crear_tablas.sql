@@ -2,12 +2,23 @@ CREATE DATABASE genshin;
 
 USE genshin;
 
+CREATE TABLE equipos(
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  nombre_equipo varchar(50) NOT NULL,
+  ID_integrante_1 INT NOT NULL,
+  ID_integrante_2 INT NOT NULL,
+  ID_integrante_3 INT NOT NULL,
+  ID_integrante_4 INT NOT NULL,
+  promedio_ataque INT NOT NULL
+);
+
 CREATE TABLE personaje(
   ID INT AUTO_INCREMENT PRIMARY KEY,
   nombre varchar(50) NOT NULL,
   edad INT NOT NULL,
   region varchar(50) NOT NULL,
-  elemento varchar(50) NOT NULL
+  elemento varchar(50) NOT NULL,
+  ataque INT NOT NULL
 );
 
 CREATE TABLE stats_principales(

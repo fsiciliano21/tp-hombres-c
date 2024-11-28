@@ -5,7 +5,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from api import personajes
+from api import personajes, equipos
 
 API_URL = 'http://127.0.0.1:5001/api/'
 
@@ -30,6 +30,7 @@ def personaje():
                 "edad": row[2],
                 "region": row[3],
                 "elemento": row[4],
+                "ataque" : row[5]
             }
             for row in response
         ]
@@ -45,7 +46,8 @@ def add_personaje():
         edad = int(request.form["edad"])
         region = request.form["region"]
         elemento = request.form["elemento"]
-        response = personajes.add_personaje(nombre, edad, region, elemento)
+        ataque = int(request.form["ataque"])
+        response = personajes.add_personaje(nombre, edad, region, elemento, ataque)
         if "error" in response:
             return f"Error: {response['error']}", 400
     except Exception as e:
@@ -70,9 +72,10 @@ def edit_personaje(personaje_id):
             edad = request.form.get("edad", type=int)
             region = request.form.get("region")
             elemento = request.form.get("elemento")
+            ataque = request.form.get("ataque", type=int)
 
             response = personajes.update_personaje(
-                personaje_id, nombre=nombre, edad=edad, region=region, elemento=elemento
+                personaje_id, nombre=nombre, edad=edad, region=region, elemento=elemento, ataque=ataque
             )
             if "error" in response:
                 return f"Error: {response['error']}", 400
@@ -94,8 +97,115 @@ def edit_personaje(personaje_id):
                 "edad": personaje[1],
                 "region": personaje[2],
                 "elemento": personaje[3],
+                "ataque" : personaje[4]
             },
         )
+    
+##########################################################
+## EQUIPOS
+@app.route("/equipos", methods=["GET"])
+def equipos_f():
+    try:
+        response = equipos.all_equipos()
+        equipos_data = [
+            {
+                "id": row[0],
+                "nombre_equipo": row[1],
+                "ID_integrante_1": row[2],
+                "ID_integrante_2": row[3],
+                "ID_integrante_3": row[4],
+                "ID_integrante_4" : row[5],
+                "promedio_ataque" : row[6]
+            }
+            for row in response
+        ]
+    except Exception as e:
+        print(f"Error fetching equipos: {e}")
+        equipos_data = []
+
+    try:
+        response = personajes.all_personajes()
+        personajes_data = [
+            {
+                "id": row[0],
+                "nombre": row[1],
+                "edad": row[2],
+                "region": row[3],
+                "elemento": row[4],
+                "ataque" : row[5]
+            }
+            for row in response
+        ]
+
+        personajes_dic = {personaje.id: personaje.nombre for personaje in response}
+    except Exception as e:
+        print(f"Error fetching personajes: {e}")
+        personajes_data = []
+
+    
+    
+    return render_template("menu/equipos.html", equipos=equipos_data, personajes=personajes_data, personajes_dic=personajes_dic)
+
+@app.route("/equipos/add", methods=["POST"])
+def add_equipo_f():
+    try:
+        
+        response = personajes.all_personajes()
+        personajes_data = [
+            {
+                "id": row[0],
+                "nombre": row[1],
+                "edad": row[2],
+                "region": row[3],
+                "elemento": row[4],
+                "ataque": row[5]
+            }
+            for row in response
+        ]
+    except Exception as e:
+        print(f"Error fetching personajes: {e}")
+        personajes_data = []
+
+    try:
+        
+        nombre_equipo = request.form["nombre_equipo"]
+        ID_integrante_1 = int(request.form["ID_integrante_1"])
+        ID_integrante_2 = int(request.form["ID_integrante_2"])
+        ID_integrante_3 = int(request.form["ID_integrante_3"])
+        ID_integrante_4 = int(request.form["ID_integrante_4"])
+
+        ataque_1 = personajes.return_ataque(ID_integrante_1).get('ataque', 0)
+        ataque_2 = personajes.return_ataque(ID_integrante_2).get('ataque', 0)
+        ataque_3 = personajes.return_ataque(ID_integrante_3).get('ataque', 0)
+        ataque_4 = personajes.return_ataque(ID_integrante_4).get('ataque', 0)
+
+        
+        promedio_ataque = (ataque_1 + ataque_2 + ataque_3 + ataque_4) // 4
+
+        
+        response = equipos.add_equipo(
+            nombre_equipo, ID_integrante_1, ID_integrante_2, ID_integrante_3, ID_integrante_4, promedio_ataque
+        )
+
+        if "error" in response:
+            return f"Error: {response['error']}", 400
+    except Exception as e:
+        return f"Error al agregar equipo: {e}", 500
+
+    return redirect(url_for("equipos_f"))
+
+@app.route("/equipos/delete/<int:equipo_id>", methods=["POST"])
+def delete_equipo_f(equipo_id):
+    try:
+        response = equipos.delete_equipo(equipo_id)
+        if "error" in response:
+            return f"Error: {response['error']}", 400
+    except Exception as e:
+        return f"Error al eliminar equipo: {e}", 500
+    return redirect(url_for("equipos_f"))
+
+
+##########################################################
 
 @app.route("/nosotros")
 def about_us():
@@ -110,28 +220,6 @@ def about_us():
     ]
     return render_template("menu/nosotros.html", integrantes=integrantes)
 
-@app.route("/equipos")
-def team():
-    personajes = [
-        {"nombre":"Diluc", "elemento":"Pyro", "arma":"Claymore", "rol":"DPS"},
-        {"nombre":"Venti", "elemento":"Anemo", "arma":"Arco", "rol":"Support"},
-        {"nombre":"Jean", "elemento":"Anemo", "arma":"Espada", "rol":"DPS"},
-        {"nombre":"Klee", "elemento":"Pyro", "arma":"Catalizador", "rol":"DPS"},
-        {"nombre":"Zhongli", "elemento":"Geo", "arma":"Lanza", "rol":"DPS"},
-        {"nombre":"Ganyu", "elemento":"Cryo", "arma":"Arco", "rol":"DPS"},
-        {"nombre":"Albedo", "elemento":"Geo", "arma":"Espada", "rol":"DPS"},
-        {"nombre":"Xiao", "elemento":"Anemo", "arma":"Lanza", "rol":"DPS"},
-        {"nombre":"Eula", "elemento":"Cryo", "arma":"Claymore", "rol":"DPS"},
-        {"nombre":"Ayaka", "elemento":"Cryo", "arma":"Espada", "rol":"DPS"},
-        {"nombre":"Kazuha", "elemento":"Anemo", "arma":"Espada", "rol":"DPS"},
-        {"nombre":"Yoimiya", "elemento":"Pyro", "arma":"Arco", "rol":"DPS"},
-        {"nombre":"Sayu", "elemento":"Anemo", "arma":"Claymore", "rol":"DPS"},
-        {"nombre":"Raiden", "elemento":"Electro", "arma":"Espada", "rol":"DPS"},
-        {"nombre":"Sara", "elemento":"Electro", "arma":"Arco", "rol":"DPS"},
-        {"nombre":"Kokomi", "elemento":"Hidro", "arma":"Catalizador", "rol":"DPS"},
-        {"nombre":"Thoma", "elemento":"Pyro", "arma":"Lanza", "rol":"DPS"},
-        {"nombre":"Yae", "elemento":"Electro", "arma":"Catalizador", "rol":"DPS"}]
-    return render_template("menu/equipos.html", personajes=personajes)
 
 @app.route("/guia")
 def guide():
