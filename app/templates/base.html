@@ -5,12 +5,13 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
             <title> {% block titulo %} Los viajeros de Teyvat {% endblock %} </title>
-            <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+            {% block base_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">{% endblock %}
 
             {% block extra_css %}{% endblock %}
 
         </head>
         <body>
+            {% block barra_menu %}
             <div class="barra_menu" >
                 <div class="link">
 
@@ -46,6 +47,7 @@
                     </a>
                 </div>
             </div>
+            {% endblock %}
 
                 {% block main %}{% endblock %}
 
