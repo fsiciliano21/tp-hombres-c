@@ -15,6 +15,48 @@ class _PersonajesViewState extends State<PersonajesView> {
     {'nombre': 'Personaje 3', 'edad': '30', 'nacion': 'Inazuma', 'elemento': 'Electro'},
   ];
 
+  void _showOptions(BuildContext context, int index) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.edit),
+              title: const Text('Modificar'),
+              onTap: () async {
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddPersonajes(
+                      personaje: personajes[index],
+                    ),
+                  ),
+                );
+                if (result != null && result is Map<String, String>) {
+                  setState(() {
+                    personajes[index] = result;
+                  });
+                }
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.delete),
+              title: const Text('Eliminar'),
+              onTap: () {
+                setState(() {
+                  personajes.removeAt(index);
+                });
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +83,7 @@ class _PersonajesViewState extends State<PersonajesView> {
               'Edad: ${personaje['edad']}, Nación: ${personaje['nacion']}, Elemento: ${personaje['elemento']}',
               style: const TextStyle(color: Colors.white),
             ),
+            onLongPress: () => _showOptions(context, index),
           );
         },
       ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AddPersonajes extends StatefulWidget {
-  const AddPersonajes({super.key});
+  final Map<String, String>? personaje;
+
+  const AddPersonajes({super.key, this.personaje});
 
   @override
   _AddPersonajesState createState() => _AddPersonajesState();
@@ -13,6 +15,17 @@ class _AddPersonajesState extends State<AddPersonajes> {
   final _edadController = TextEditingController();
   String _nacion = 'Mondstadt';
   String _elemento = 'Ameno';
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.personaje != null) {
+      _nombreController.text = widget.personaje!['nombre']!;
+      _edadController.text = widget.personaje!['edad']!;
+      _nacion = widget.personaje!['nacion']!;
+      _elemento = widget.personaje!['elemento']!;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
