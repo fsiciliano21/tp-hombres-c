@@ -11,6 +11,9 @@ def get_all_personajes():
   except Exception as e:
     return jsonify({'error': str(e)}), 500
 
+  if not result:
+    return jsonify({'error': 'No se encontraron personajes'}), 404
+
   response = []
   for row in result:
     response.append({
@@ -36,11 +39,11 @@ def get_by_id(id):
 
     result = result[0]
     return jsonify({
-      'nombre': row[0],
-      'edad': row[1],
-      'region': row[2],
-      'elemento': row[3],
-      'ataque' : row[4]
+      'nombre': result[0],
+      'edad': result[1],
+      'region': result[2],
+      'elemento': result[3],
+      'ataque' : result[4]
     }), 200
 
 @app.route('/api/personajes', methods=['POST'])
@@ -48,7 +51,7 @@ def create_personajes():
   data = request.json
   try:
     response = personajes.add_personaje(
-       data['nombre'], data['edad'], data['region'], data['elemento']
+       data['nombre'], data['edad'], data['region'], data['elemento'], data['ataque']
     )
     return jsonify(response), 201
   except Exception as e:
@@ -87,10 +90,13 @@ def get_all_equipos():
   except Exception as e:
     return jsonify({'error': str(e)}), 500
 
+  if not result:
+    return jsonify({'error': 'No se encontraron equipos'}), 404
+
   response = []
   for row in result:
     response.append({
-      'ID': id[0],
+      'ID': row[0],
       'nombre_equipo': row[1],
       'ID_integrante_1': row[2],
       'ID_integrante_2': row[3],
@@ -113,12 +119,12 @@ def get_equipo_by_id(id):
 
     result = result[0]
     return jsonify({
-      'nombre_equipo': row[0],
-      'ID_integrante_1': row[1],
-      'ID_integrante_2': row[2],
-      'ID_integrante_3': row[3],
-      'ID_integrante_4' : row[4],
-      'promedio_ataque' : row[5]
+      'nombre_equipo': result[0],
+      'ID_integrante_1': result[1],
+      'ID_integrante_2': result[2],
+      'ID_integrante_3': result[3],
+      'ID_integrante_4' : result[4],
+      'promedio_ataque' : result[5]
     }), 200
 
 @app.route('/api/equipos', methods=['POST'])
