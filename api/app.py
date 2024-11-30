@@ -17,7 +17,7 @@ def get_all_personajes():
   response = []
   for row in result:
     response.append({
-      'ID': id[0],
+      'ID': row[0],
       'nombre': row[1],
       'edad': row[2],
       'region': row[3],
