@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:genshin/models/personaje.dart';
+import 'package:genshin/services/api_service.dart';
+import 'package:genshin/login.dart';
 
 class AddPersonajes extends StatefulWidget {
   final Map<String, String>? personaje;
@@ -14,8 +16,14 @@ class _AddPersonajesState extends State<AddPersonajes> {
   final _formKey = GlobalKey<FormState>();
   final _nombreController = TextEditingController();
   final _edadController = TextEditingController();
-  String _nacion = 'Mondstadt';
-  String _elemento = 'Ameno';
+  final _ataqueController = TextEditingController();
+  final ApiService apiService = ApiService();
+
+  String? _selectedRegion;
+  String? _selectedElement;
+
+  final List<String> _regions = ['Mondstadt', 'Liyue', 'Inazuma', 'Sumeru', 'Fontaine', 'Natlan'];
+  final List<String> _elements = ['Anemo', 'Pyro', 'Hydro', 'Dendro', 'Electro', 'Cryo'];
 
   @override
   void initState() {
@@ -23,8 +31,40 @@ class _AddPersonajesState extends State<AddPersonajes> {
     if (widget.personaje != null) {
       _nombreController.text = widget.personaje!['nombre']!;
       _edadController.text = widget.personaje!['edad']!;
-      _nacion = widget.personaje!['nacion']!;
-      _elemento = widget.personaje!['elemento']!;
+      _selectedRegion = widget.personaje!['region'];
+      _selectedElement = widget.personaje!['elemento'];
+      _ataqueController.text = widget.personaje!['ataque']!;
+    }
+  }
+
+  @override
+  void dispose() {
+    _nombreController.dispose();
+    _edadController.dispose();
+    _ataqueController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _savePersonaje() async {
+    if (_formKey.currentState!.validate()) {
+      final personaje = Personaje(
+        id: 0, // El ID será asignado por la base de datos
+        nombre: _nombreController.text,
+        edad: int.parse(_edadController.text),
+        region: _selectedRegion!,
+        elemento: _selectedElement!,
+        ataque: int.parse(_ataqueController.text),
+      );
+
+      try {
+        final token = await login('test', 'test'); // Asegúrate de obtener el token de autenticación
+        await apiService.addPersonaje(token, personaje);
+        Navigator.pop(context, 'Personaje agregado exitosamente');
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error al agregar personaje: $e')),
+        );
+      }
     }
   }
 
@@ -32,8 +72,7 @@ class _AddPersonajesState extends State<AddPersonajes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Agregar Personaje'),
-        backgroundColor: const Color(0xFFEDD9B7),
+        title: Text(widget.personaje == null ? 'Agregar Personaje' : 'Editar Personaje'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -41,111 +80,89 @@ class _AddPersonajesState extends State<AddPersonajes> {
           key: _formKey,
           child: ListView(
             children: [
-              
-              // nombre
               TextFormField(
                 controller: _nombreController,
-                decoration: const InputDecoration(
-                  labelText: 'Nombre',
-                  labelStyle: TextStyle(color: Colors.white),
-                ),
-                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(labelText: 'Nombre'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor ingrese un nombre';
+                    return 'Por favor ingresa un nombre';
                   }
                   return null;
                 },
               ),
-
-              // edad
               TextFormField(
                 controller: _edadController,
-                decoration: const InputDecoration(
-                  labelText: 'Edad',
-                  labelStyle: TextStyle(color: Colors.white),
-                ),
+                decoration: const InputDecoration(labelText: 'Edad'),
                 keyboardType: TextInputType.number,
-                style: const TextStyle(color: Colors.white),
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor ingrese una edad';
+                    return 'Por favor ingresa una edad';
                   }
                   return null;
                 },
               ),
-              // nacion
               DropdownButtonFormField<String>(
-                value: _nacion,
-                decoration: const InputDecoration(
-                  labelText: 'Nación',
-                  labelStyle: TextStyle(color: Colors.white),
-                ),
-                items: ['Mondstadt', 'Liyue', 'Inazuma', 'Sumeru', 'Fontaine', 'Natlan']
-                    .map((nacion) => DropdownMenuItem(
-                          value: nacion,
-                          child: Text(nacion, style: const TextStyle(color: Colors.white)),
-                        ))
-                    .toList(),
-                onChanged: (value) {
+                value: _selectedRegion,
+                decoration: const InputDecoration(labelText: 'Región'),
+                items: _regions.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (newValue) {
                   setState(() {
-                    _nacion = value!;
+                    _selectedRegion = newValue;
                   });
                 },
-                style: const TextStyle(color: Colors.white),
-                dropdownColor: Colors.black,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor selecciona una región';
+                  }
+                  return null;
+                },
               ),
-
-              // elemento
               DropdownButtonFormField<String>(
-                value: _elemento,
-                decoration: const InputDecoration(
-                  labelText: 'Elemento',
-                  labelStyle: TextStyle(color: Colors.white),
-                ),
-                items: ['Ameno', 'Cryo', 'Pyro', 'Electro', 'Dendro', 'Hydro']
-                    .map((elemento) => DropdownMenuItem(
-                          value: elemento,
-                          child: Text(elemento, style: const TextStyle(color: Colors.white)),
-                        ))
-                    .toList(),
-                onChanged: (value) {
+                value: _selectedElement,
+                decoration: const InputDecoration(labelText: 'Elemento'),
+                items: _elements.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (newValue) {
                   setState(() {
-                    _elemento = value!;
+                    _selectedElement = newValue;
                   });
                 },
-                style: const TextStyle(color: Colors.white),
-                dropdownColor: Colors.black,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor selecciona un elemento';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _ataqueController,
+                decoration: const InputDecoration(labelText: 'Ataque'),
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor ingresa un ataque';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    final nuevoPersonaje = {
-                      'nombre': _nombreController.text,
-                      'edad': _edadController.text,
-                      'nacion': _nacion,
-                      'elemento': _elemento,
-                    };
-                    Navigator.pop(context, nuevoPersonaje);
-                  }
-                },
-                child: const Text('Agregar Personaje'),
+                onPressed: _savePersonaje,
+                child: const Text('Guardar'),
               ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _nombreController.dispose();
-    _edadController.dispose();
-    super.dispose();
   }
 }

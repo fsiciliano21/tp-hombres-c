@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:genshin/models/personaje.dart';
 import 'package:genshin/presentation/screens/add_personajes.dart';
+import 'package:genshin/services/api_service.dart';
+import 'package:genshin/login.dart';
+import 'package:genshin/presentation/widgets/personaje_list_tile.dart';
 
 class PersonajesView extends StatefulWidget {
   const PersonajesView({super.key});
@@ -9,13 +13,31 @@ class PersonajesView extends StatefulWidget {
 }
 
 class _PersonajesViewState extends State<PersonajesView> {
-  final List<Map<String, String>> personajes = [
-    {'nombre': 'Personaje 1', 'edad': '20', 'nacion': 'Mondstadt', 'elemento': 'Ameno'},
-    {'nombre': 'Personaje 2', 'edad': '25', 'nacion': 'Liyue', 'elemento': 'Pyro'},
-    {'nombre': 'Personaje 3', 'edad': '30', 'nacion': 'Inazuma', 'elemento': 'Electro'},
-  ];
+  late Future<List<Personaje>> futurePersonajes;
+  final ApiService apiService = ApiService();
+  late String token;
 
-  void _showOptions(BuildContext context, int index) {
+  @override
+  void initState() {
+    super.initState();
+    futurePersonajes = Future.value([]); // Inicializa con un valor predeterminado
+    _authenticateAndFetchData();
+  }
+
+  Future<void> _authenticateAndFetchData() async {
+    try {
+      token = await login('test', 'test');
+      setState(() {
+        futurePersonajes = apiService.fetchPersonajes(token);
+      });
+    } catch (e) {
+      setState(() {
+        futurePersonajes = Future.error('Error: $e');
+      });
+    }
+  }
+
+  void _showOptions(BuildContext context, int index, List<Personaje> personajes) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -29,13 +51,13 @@ class _PersonajesViewState extends State<PersonajesView> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => AddPersonajes(
-                      personaje: personajes[index],
+                      personaje: personajes[index].toMap(),
                     ),
                   ),
                 );
                 if (result != null && result is Map<String, String>) {
                   setState(() {
-                    personajes[index] = result;
+                    personajes[index] = Personaje.fromJson(result);
                   });
                 }
                 Navigator.pop(context);
@@ -70,21 +92,28 @@ class _PersonajesViewState extends State<PersonajesView> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: personajes.length,
-        itemBuilder: (context, index) {
-          final personaje = personajes[index];
-          return ListTile(
-            title: Text(
-              personaje['nombre']!,
-              style: const TextStyle(color: Colors.white),
-            ),
-            subtitle: Text(
-              'Edad: ${personaje['edad']}, Nación: ${personaje['nacion']}, Elemento: ${personaje['elemento']}',
-              style: const TextStyle(color: Colors.white),
-            ),
-            onLongPress: () => _showOptions(context, index),
-          );
+      body: FutureBuilder<List<Personaje>>(
+        future: futurePersonajes,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No hay personajes disponibles'));
+          } else {
+            final personajes = snapshot.data!;
+            return ListView.builder(
+              itemCount: personajes.length,
+              itemBuilder: (context, index) {
+                final personaje = personajes[index];
+                return PersonajeListTile(
+                  personaje: personaje,
+                  onLongPress: () => _showOptions(context, index, personajes),
+                );
+              },
+            );
+          }
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -93,9 +122,12 @@ class _PersonajesViewState extends State<PersonajesView> {
             context,
             MaterialPageRoute(builder: (context) => const AddPersonajes()),
           );
-          if (result != null && result is Map<String, String>) {
+          if (result != null && result is String) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(result)),
+            );
             setState(() {
-              personajes.add(result);
+              futurePersonajes = apiService.fetchPersonajes(token);
             });
           }
         },
