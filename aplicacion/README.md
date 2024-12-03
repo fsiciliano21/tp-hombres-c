@@ -44,7 +44,7 @@ cd aplicacion
 ```
 ### 2. Actaulizar el pub
 
-_Una vez copiado y estemos dentro del directorio, ejecutaremos el siguiente comando para crear un entorno virtual._
+_Una vez copiado y estemos dentro del directorio, ejecutaremos el siguiente comando para actualizar los paquetes._
 
 
 ```
