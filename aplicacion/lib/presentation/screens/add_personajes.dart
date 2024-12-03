@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:genshin/models/personaje.dart';
 import 'package:genshin/services/api_service.dart';
 import 'package:genshin/login.dart';
@@ -55,7 +56,6 @@ class _AddPersonajesState extends State<AddPersonajes> {
         elemento: _selectedElement!,
         ataque: int.parse(_ataqueController.text),
       );
-
       try {
         final token = await login('test', 'test'); // Asegúrate de obtener el token de autenticación
         await apiService.addPersonaje(token, personaje);
@@ -73,6 +73,9 @@ class _AddPersonajesState extends State<AddPersonajes> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.personaje == null ? 'Agregar Personaje' : 'Editar Personaje'),
+        backgroundColor: const Color(0xFFEDD9B7),
+        titleTextStyle: const TextStyle(color: Colors.black, fontSize: 20),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -80,9 +83,14 @@ class _AddPersonajesState extends State<AddPersonajes> {
           key: _formKey,
           child: ListView(
             children: [
+              // Nombre
               TextFormField(
                 controller: _nombreController,
-                decoration: const InputDecoration(labelText: 'Nombre'),
+                decoration: const InputDecoration(
+                  labelText: 'Nombre',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
+                style: const TextStyle(color: Colors.white),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingresa un nombre';
@@ -90,10 +98,18 @@ class _AddPersonajesState extends State<AddPersonajes> {
                   return null;
                 },
               ),
+              // Edad
               TextFormField(
                 controller: _edadController,
-                decoration: const InputDecoration(labelText: 'Edad'),
+                decoration: const InputDecoration(
+                  labelText: 'Edad',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
                 keyboardType: TextInputType.number,
+                style: const TextStyle(color: Colors.white),
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingresa una edad';
@@ -101,13 +117,17 @@ class _AddPersonajesState extends State<AddPersonajes> {
                   return null;
                 },
               ),
+              // Región
               DropdownButtonFormField<String>(
                 value: _selectedRegion,
-                decoration: const InputDecoration(labelText: 'Región'),
+                decoration: const InputDecoration(
+                  labelText: 'Región',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
                 items: _regions.map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value),
+                    child: Text(value, style: const TextStyle(color: Colors.white)),
                   );
                 }).toList(),
                 onChanged: (newValue) {
@@ -115,6 +135,8 @@ class _AddPersonajesState extends State<AddPersonajes> {
                     _selectedRegion = newValue;
                   });
                 },
+                style: const TextStyle(color: Colors.white),
+                dropdownColor: Colors.black,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor selecciona una región';
@@ -122,13 +144,17 @@ class _AddPersonajesState extends State<AddPersonajes> {
                   return null;
                 },
               ),
+              // Elemento
               DropdownButtonFormField<String>(
                 value: _selectedElement,
-                decoration: const InputDecoration(labelText: 'Elemento'),
+                decoration: const InputDecoration(
+                  labelText: 'Elemento',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
                 items: _elements.map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value),
+                    child: Text(value, style: const TextStyle(color: Colors.white)),
                   );
                 }).toList(),
                 onChanged: (newValue) {
@@ -136,6 +162,8 @@ class _AddPersonajesState extends State<AddPersonajes> {
                     _selectedElement = newValue;
                   });
                 },
+                style: const TextStyle(color: Colors.white),
+                dropdownColor: Colors.black,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor selecciona un elemento';
@@ -143,13 +171,18 @@ class _AddPersonajesState extends State<AddPersonajes> {
                   return null;
                 },
               ),
+              // Ataque
               TextFormField(
                 controller: _ataqueController,
-                decoration: const InputDecoration(labelText: 'Ataque'),
+                decoration: const InputDecoration(
+                  labelText: 'Ataque',
+                  labelStyle: TextStyle(color: Colors.white),
+                ),
                 keyboardType: TextInputType.number,
+                style: const TextStyle(color: Colors.white),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor ingresa un ataque';
+                    return 'Por favor ingresa un valor de ataque';
                   }
                   return null;
                 },

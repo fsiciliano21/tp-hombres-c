@@ -102,6 +102,9 @@ class _AddEquipoState extends State<AddEquipo> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.equipo == null ? 'Agregar Equipo' : 'Editar Equipo'),
+        backgroundColor: const Color(0xFFEDD9B7),
+        titleTextStyle: const TextStyle(color: Colors.black, fontSize: 20),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -111,18 +114,22 @@ class _AddEquipoState extends State<AddEquipo> {
             future: futurePersonajes,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return Center(child: Text('No hay personajes disponibles'));
+                return const Center(child: Text('No hay personajes disponibles'));
               } else {
                 final personajes = snapshot.data!;
                 return ListView(
                   children: [
                     TextFormField(
                       controller: _nombreController,
-                      decoration: const InputDecoration(labelText: 'Nombre del Equipo'),
+                      decoration: const InputDecoration(
+                        labelText: 'Nombre del Equipo',
+                        labelStyle: TextStyle(color: Colors.white),
+                      ),
+                      style: const TextStyle(color: Colors.white),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor ingresa un nombre';
@@ -133,13 +140,16 @@ class _AddEquipoState extends State<AddEquipo> {
                     for (int i = 0; i < 4; i++)
                       DropdownButtonFormField<int>(
                         value: _integrantes[i],
-                        decoration: InputDecoration(labelText: 'Integrante ${i + 1}'),
+                        decoration: InputDecoration(
+                          labelText: 'Integrante ${i + 1}',
+                          labelStyle: const TextStyle(color: Colors.white),
+                        ),
                         items: personajes
                             .where((p) => !_integrantes.contains(p.id) || p.id == _integrantes[i])
                             .map((personaje) {
                           return DropdownMenuItem<int>(
                             value: personaje.id,
-                            child: Text(personaje.nombre),
+                            child: Text(personaje.nombre, style: const TextStyle(color: Colors.white)),
                           );
                         }).toList(),
                         onChanged: (value) {
@@ -147,6 +157,8 @@ class _AddEquipoState extends State<AddEquipo> {
                             _integrantes[i] = value;
                           });
                         },
+                        style: const TextStyle(color: Colors.white),
+                        dropdownColor: Colors.black,
                         validator: (value) {
                           if (value == null) {
                             return 'Por favor selecciona un integrante';
