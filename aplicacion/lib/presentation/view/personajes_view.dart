@@ -37,46 +37,19 @@ class _PersonajesViewState extends State<PersonajesView> {
     }
   }
 
-  void _showOptions(BuildContext context, int index, List<Personaje> personajes) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return Wrap(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.edit),
-              title: const Text('Modificar'),
-              onTap: () async {
-                final result = await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddPersonajes(
-                      personaje: personajes[index].toMap(),
-                    ),
-                  ),
-                );
-                if (result != null && result is Map<String, String>) {
-                  setState(() {
-                    personajes[index] = Personaje.fromJson(result);
-                  });
-                }
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.delete),
-              title: const Text('Eliminar'),
-              onTap: () {
-                setState(() {
-                  personajes.removeAt(index);
-                });
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        );
-      },
-    );
+  Future<void> _refreshData() async {
+    try {
+      final newToken = await login('test', 'test');
+      final newPersonajes = await apiService.fetchPersonajes(newToken);
+      setState(() {
+        token = newToken;
+        futurePersonajes = Future.value(newPersonajes);
+      });
+    } catch (e) {
+      setState(() {
+        futurePersonajes = Future.error('Error: $e');
+      });
+    }
   }
 
   @override
@@ -87,34 +60,37 @@ class _PersonajesViewState extends State<PersonajesView> {
         backgroundColor: const Color(0xFFEDD9B7),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
+            onPressed: _refreshData,
+            icon: const Icon(Icons.refresh),
           ),
         ],
       ),
-      body: FutureBuilder<List<Personaje>>(
-        future: futurePersonajes,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No hay personajes disponibles'));
-          } else {
-            final personajes = snapshot.data!;
-            return ListView.builder(
-              itemCount: personajes.length,
-              itemBuilder: (context, index) {
-                final personaje = personajes[index];
-                return PersonajeListTile(
-                  personaje: personaje,
-                  onLongPress: () => _showOptions(context, index, personajes),
-                );
-              },
-            );
-          }
-        },
+      body: RefreshIndicator(
+        onRefresh: _refreshData,
+        child: FutureBuilder<List<Personaje>>(
+          future: futurePersonajes,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return const Center(child: Text('No hay personajes disponibles'));
+            } else {
+              final personajes = snapshot.data!;
+              return ListView.builder(
+                itemCount: personajes.length,
+                itemBuilder: (context, index) {
+                  final personaje = personajes[index];
+                  return PersonajeListTile(
+                    personaje: personaje,
+                    onLongPress: () => _showOptions(context, index, personajes),
+                  );
+                },
+              );
+            }
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -126,14 +102,16 @@ class _PersonajesViewState extends State<PersonajesView> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(result)),
             );
-            setState(() {
-              futurePersonajes = apiService.fetchPersonajes(token);
-            });
+            _refreshData();
           }
         },
         child: const Icon(Icons.add),
         backgroundColor: const Color(0xFFEDD9B7),
       ),
     );
+  }
+
+  void _showOptions(BuildContext context, int index, List<Personaje> personajes) {
+    // Implementa las opciones que deseas mostrar al hacer una pulsación larga
   }
 }
