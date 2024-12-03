@@ -2,7 +2,7 @@
 
 # TP: "Los viajeros de Teyvat"
 
-![Texto alternativo](imagenes/banner.jpg)
+![Texto alternativo](../imagenes/banner.jpg)
 
 <h2 align="center">
     Por "Los Hombres C"
